@@ -8,4 +8,6 @@ Java future.
 [Metrics](http://metrics.dropwizard.io) to measure the behavior of critical components in java.
 
 ## mystream
-`map()` vs. `flatMap()` in java 8.
+Usage of lambda expressions in Java8.
+- `map()` vs. `flatMap()`;
+- `distinct()` & `toMap()`

@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 /**
  * @author liuhaibo on 2017/11/15
  */
-public class mapVsFlatMap {
+public class MapVsFlatMap {
     public static void main(String [] args) {
         // a text
         List<String> text = Arrays.asList(
@@ -39,7 +39,9 @@ public class mapVsFlatMap {
 
     /**
      * {@link java.util.stream.Stream#flatMap(Function)} is used to get a one-to-many mapper
-     * if you really want to make one-to-one with flatMap(), then it should be changed into one-to-List(one)
+     * if you really want to make one-to-one with flatMap(), then it should be changed into one-to-List(one).
+     * Note: flatMap() can also strip outer Stream() if put it simply.
+     * ref: https://stackoverflow.com/a/47299117/7676237
      */
     private static Optional<Integer> useFlatMap(List<String> text) {
         // `Arrays.asList(xxx).stream()` could be replaced by `Stream.of(xxx)`
