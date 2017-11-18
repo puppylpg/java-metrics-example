@@ -1,4 +1,4 @@
-package example.mymetrics;
+package example.metrics;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;

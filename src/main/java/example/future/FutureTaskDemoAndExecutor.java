@@ -1,4 +1,4 @@
-package example.myfuture;
+package example.future;
 
 import java.util.Random;
 import java.util.concurrent.*;
@@ -7,7 +7,7 @@ import java.util.concurrent.*;
 public class FutureTaskDemoAndExecutor {
     public static void main(String[] args) {
         // 初始化一个Callable对象和FutureTask对象
-//        Callable pAccount = new example.myfuture.PrivateAccount();
+//        Callable pAccount = new example.future.PrivateAccount();
         FutureTask futureTask = new FutureTask(new Callable<Integer>() {        // 用不用泛型皆可
             Integer totalMoney;
             @Override
@@ -53,7 +53,7 @@ public class FutureTaskDemoAndExecutor {
 
 /*
 @SuppressWarnings("all")
-class example.myfuture.PrivateAccount implements Callable {
+class example.future.PrivateAccount implements Callable {
     Integer totalMoney;
 
     @Override
