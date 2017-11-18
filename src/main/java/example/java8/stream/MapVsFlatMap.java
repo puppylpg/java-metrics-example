@@ -1,4 +1,4 @@
-package example.stream;
+package example.java8.stream;
 
 import java.util.Arrays;
 import java.util.List;
