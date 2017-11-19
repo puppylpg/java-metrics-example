@@ -14,6 +14,10 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
+ * 1. use Function to extract keys;
+ * 2. use Predicate to assert key;
+ * 3. use filter() to filter keys.
+ *
  * @author liuhaibo on 2017/11/17
  */
 public class DistinctByFilterAndLambda {

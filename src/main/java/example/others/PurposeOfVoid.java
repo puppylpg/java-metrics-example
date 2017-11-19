@@ -12,7 +12,9 @@ public class PurposeOfVoid {
 
     public static void main(String[] args) throws SecurityException, NoSuchMethodException {
         Class clazz = Test.class.getMethod("test",null).getReturnType();
+        // true
         System.out.println(clazz == Void.TYPE);
+        // false
         System.out.println(clazz == Void.class);
     }
 

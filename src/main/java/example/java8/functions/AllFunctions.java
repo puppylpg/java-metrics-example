@@ -8,6 +8,10 @@ import java.util.function.*;
  */
 public class AllFunctions {
 
+    /**
+     * Unary
+     */
+
     ///// Function: T --> ||Function|| --> R
 
     private static void display(Function<Integer, String> func) {
@@ -45,6 +49,16 @@ public class AllFunctions {
         // use a function to operate lambda
         display(() -> 10);
         display(() -> (int) (Math.random() * 100));
+    }
+
+    ///// BooleanSupplier:: null --> ||BooleanSupplier|| --> boolean
+
+    private static void useOfBooleanSupplier() {
+        System.out.println();
+
+        BooleanSupplier bSupp = () -> Math.random() > 0.5;
+
+        System.out.println(bSupp.getAsBoolean());
     }
 
     ///// Predicate: T --> ||Predicate|| --> boolean
@@ -90,7 +104,7 @@ public class AllFunctions {
         display(consumer);
     }
 
-    ///// UnaryOperand: T --> ||UnaryOperand|| --> T
+    ///// UnaryOperator: T --> ||UnaryOperator|| --> T
 
     private static String display(UnaryOperator<String> uo) {
         return uo.apply("Hello");
@@ -109,6 +123,31 @@ public class AllFunctions {
         UnaryOperator<String> uo = x -> x + x;
         System.out.println(display(uo));
     }
+
+    /**
+     * Binary
+     */
+
+    ///// BiFunction: T, U --> ||BiConsumer|| --> R
+
+    private static void useOfBiFunction() {
+        System.out.println("BiFunction: T, U --> ||BiConsumer|| --> R");
+
+        BiFunction<Integer, Double, String> biFunc = (x, y) -> String.valueOf(x) + String.valueOf(y);
+
+        System.out.println(biFunc.apply(5, 6.7));
+    }
+
+    ///// BiPredicate: T, U --> ||BiPredicate|| --> boolean
+
+    private static void useOfBiPredicate() {
+        System.out.println("BiPredicate: T, U --> ||BiPredicate|| --> boolean");
+
+        BiPredicate<Integer, String> biPred = (x, y) -> String.valueOf(x).length() < y.length();
+
+        System.out.println(biPred.test(555, "Hello"));
+    }
+
 
     ///// BiConsumer: T, U --> ||BiConsumer|| --> null
 
@@ -130,15 +169,44 @@ public class AllFunctions {
         display(bc);
     }
 
+    ///// BinaryOperator: T, T --> ||BinaryOperator|| --> T
+
+    private static void useOfBinaryOperator() {
+        System.out.println("BinaryOperator: T, T --> ||BinaryOperator|| --> T");
+
+        BinaryOperator<Integer> biOper = (x, y) -> x + y;
+
+        System.out.println(biOper.apply(1, 2));
+    }
+
     ///// Main
 
     public static void main(String[] args) {
-        useOfFunction();
-        useOfSupplier();
-        useOfPredicate();
-        useOfConsumer();
-        useOfUnaryOperand();
+        // Unary: f(x) -> y
+        // Binary: f(x, y) -> z
 
+        useOfFunction();
+        useOfBiFunction();
+
+        useOfSupplier();
+        // there is no BiSupplier, because f(null, y) -> z is just f(x) -> y
+        // so BiSupplier is indeed Function
+
+        useOfBooleanSupplier();
+
+        useOfPredicate();
+        useOfBiPredicate();
+
+        useOfConsumer();
         useOfBiConsumer();
+
+        useOfUnaryOperand();
+        useOfBinaryOperator();
+
+        // There are also many other functions in java.util.function
+        // These specializations are used to reduce outboxing
+        // For example: ToIntFunction is f(x) -> (int)y
+        // If you use Function<T, Integer> f(x) -> y,
+        // that means Integer should be transferred into int
     }
 }
