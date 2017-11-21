@@ -15,7 +15,7 @@ public class FunctionToReplaceAll {
         System.out.println(pre.test("ape"));
     }
 
-    private static void replaceUnaryOperand() {
+    private static void replaceUnaryOperator() {
         Function<Integer, Integer> func = x -> x * 2;
         UnaryOperator<Integer> uo = x -> x * 2;
 
@@ -46,7 +46,7 @@ public class FunctionToReplaceAll {
 
     public static void main(String [] args) {
         replacePredicate();
-        replaceUnaryOperand();
+        replaceUnaryOperator();
         replaceConsumer();
         replaceSupplier();
     }

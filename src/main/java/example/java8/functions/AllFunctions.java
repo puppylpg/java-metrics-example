@@ -110,8 +110,8 @@ public class AllFunctions {
         return uo.apply("Hello");
     }
 
-    private static void useOfUnaryOperand() {
-        System.out.println("UnaryOperand: T --> ||UnaryOperand|| --> T");
+    private static void useOfUnaryOperator() {
+        System.out.println("UnaryOperator: T --> ||UnaryOperator|| --> T");
 
         List<Integer> list = new ArrayList<>(Arrays.asList(5, 6, 7));
 
@@ -200,7 +200,7 @@ public class AllFunctions {
         useOfConsumer();
         useOfBiConsumer();
 
-        useOfUnaryOperand();
+        useOfUnaryOperator();
         useOfBinaryOperator();
 
         // There are also many other functions in java.util.function
