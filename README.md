@@ -24,6 +24,12 @@ Usage for java.util.function.
 - (2017-11-19)usage of all kinds of functions in java.util.function;
 - (2017-11-19)use Function to replace other functions in java.util.function.
 
+### Collectors and Stream.collect()(2017-11-22)
+Usage for `java.util.Stream.Collectors`. `Stream.collect(Collector)` can collect a stream
+into Collections using different Collectors, and `Collectors` can offer
+different Collectors to support `Stream.collect(Collector)`.
+- (2017-11-22)functions in Collectors.
+
 ## concurrency(2017-11-21)
 A deep research for java's concurrency.
 - (2017-11-21)use `ThreadLocal`;
