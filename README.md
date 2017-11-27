@@ -34,6 +34,11 @@ different Collectors to support `Stream.collect(Collector)`.
 A deep research for java's concurrency.
 - (2017-11-21)use `ThreadLocal`;
 
+### blockingqueue
+Usage for implemented classes of BlockingQueue.
+- (2017-11-28)use `ArrayBlockingQueue`;
+- (2017-11-28)use `DelayQueue` & `ExecutorService`;
+
 ## others(2017-11-19)
 Other special usage in java.
 - (2017-11-19)class `Void`;
