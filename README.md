@@ -39,6 +39,17 @@ Usage for implemented classes of BlockingQueue.
 - (2017-11-28)use `ArrayBlockingQueue`;
 - (2017-11-28)use `DelayQueue` & `ExecutorService`;
 
+## jackson(2017-11-29)
+- (2017-11-29)Jackson annotation for polymorphism;
+
+## lombok(2017-11-30)
+Usage for lombok.
+- (2017-11-30)use `@lombok.Builder`;
+
+## serialize(2017-11-30)
+Usage for serializing a Java object.
+- (2017-11-30)use ObjectInputStream & ObjectOutputStream;
+
 ## others(2017-11-19)
 Other special usage in java.
 - (2017-11-19)class `Void`;
