@@ -12,6 +12,8 @@ Java future.
 
 > `Coda Hale Yammer Inc.` So they are just from one corporation.
 
+- (2017-12-02)Metrics: MetricRegistry & SharedMetricRegistries.
+
 ## java8
 Usage for java8.
 ### stream(2017-11-16)
@@ -58,3 +60,13 @@ Usage for serializing a Java object.
 ## others(2017-11-19)
 Other special usage in java.
 - (2017-11-19)class `Void`;
+
+## logs(2017-12-02)
+Usage for log4j(outdated)/log4f2/logback/slf4j.
+
+slf4j is just a facade, it relies on different underlying implements.
+For example: `logback-classic` to use logback. And it'll download two
+jars: `logback-classic` + `slf4j-api`.
+
+- (2017-12-02)package-info.java: What I Think!
+> I think using name to get a logger configured in the .xml file is easier now.
