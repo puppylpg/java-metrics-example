@@ -1,4 +1,4 @@
-package example.metrics;
+package example.metrics.old;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;

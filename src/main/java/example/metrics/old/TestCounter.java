@@ -1,4 +1,4 @@
-package example.metrics;
+package example.metrics.old;
 
 import java.util.LinkedList;
 import java.util.Queue;
