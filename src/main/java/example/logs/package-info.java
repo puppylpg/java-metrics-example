@@ -1,17 +1,21 @@
 /**
  * 大前提：默认情况下，子logger将继承父logger的所有appenders。
  *
+ *
  * 1. 所有的xxxDemo都没有自己的appender，因此会继承root的appender：stdout & fileout.
  * 因此在运行xxxDemo的时候，这两个appender都会输出东西，具体表现为：命令行在输出日志，fileout.log也在打日志。
  *
  * 2. 所有的xxxRollingDemo都有自己的appender：RoolingAppender，并且，他们也都会继承root的appender：stdout & fileout.
  * 因此在运行xxxRollingDemo的时候，命令行在输出日志，fileout.log在打日志，各个rolling日志文件也在打日志。
  *
- * 还可以分析另一种情况，会更加清晰：
+ *
+ * 还可以分析log4jDemo.java中的另一种情况，会更加清晰：
  * private static final Logger learnFromGorgon = Logger.getLogger("invokeByName");
  * 在Log4jDemo.java中搞了一个按照名字获取的appender。
  * 由于learnFromGorgon会继承父类root的两个appender，
  * 因此learnFromGorgon打的日志会在三个地方输出：console & fileout.log & invokeByName.log。
+ * /// IMPORTANT:::
+ * （如果只想输出到自己的appender中，不想输出到父类eg: root的appender里，设置additivity="false"）
  *
  * 但是invokeByName不是任何其他logger的父类，所以别的日志不会输出到invokeByName.log中。
  * （除非给它定义一个子logger，如：Logger son = Logger.getLogger("invokeByName.xxx")，
@@ -29,11 +33,21 @@
  *     <priority value="INFO" />
  *     <appender-ref ref="NORMAL" />
  * </root>
- *
+ * 但是打到performance和access的log里的内容不会再打到logs/log中，因为他们都设置了additivity="false"！！！
  *
  *
  * 最后提一点：slf4j由于目前只配了`logback-classic`，所以slf4j只有logback一个实现类，默认logback.xml就是它的配置文件。
  * 想更改实现类的话，直接删掉`logback-classic`，换成其他的，并相应添加个配置文件就行了，代码完全不用动！
  * 的确挺方便的。（可以换成slf4j-simple、jul-to-slf4j、slf4j-jdk14、slf4j-log4j12等）
+ *
+ * 如果出现多个绑定，会出现冲突：
+ * SLF4J: Class path contains multiple SLF4J bindings.
+ * SLF4J: Found binding in [jar:file:/home/pichu/.m2/repository/org/slf4j/slf4j-log4j12/1.7.25/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+ * SLF4J: Found binding in [jar:file:/home/pichu/.m2/repository/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+ * SLF4J: Found binding in [jar:file:/home/pichu/.m2/repository/org/slf4j/slf4j-simple/1.7.25/slf4j-simple-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+ * SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+ * SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+ *
+ * 这里的选择顺序就是pom.xml里定义的这几个依赖的顺序
  */
 package example.logs;

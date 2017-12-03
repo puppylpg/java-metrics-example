@@ -71,11 +71,28 @@
         </encoder>
     </appender>
 
+    <!-- From XiaoKai: click-consumer -->
+    <appender name="FILE_SEND_SUCCEED" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>target/slf4j/send-succeed.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
     # Override log level for specified package
     <logger name="example.logs.logback.LogbackRollingDemo" level="TRACE">
         <appender-ref ref="roll-by-size"/>
         <appender-ref ref="roll-by-time"/>
         <appender-ref ref="roll-by-time-and-size"/>
+    </logger>
+
+    <!-- get by name -->
+    <!-- IMPORTANT: additivity -->
+    <logger name="send.succeed" additivity="false">
+        <appender-ref ref="FILE_SEND_SUCCEED" />
     </logger>
 
     <root level="DEBUG">
