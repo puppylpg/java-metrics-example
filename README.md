@@ -60,6 +60,7 @@ Usage for serializing a Java object.
 ## others(2017-11-19)
 Other special usage in java.
 - (2017-11-19)class `Void`;
+- (2017-12-07)usage for String("xxx") & difference in `equals()` and `==`
 
 ## logs(2017-12-02)
 Usage for log4j(outdated)/log4f2/logback/slf4j.
