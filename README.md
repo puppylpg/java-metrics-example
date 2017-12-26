@@ -74,3 +74,10 @@ jars: `logback-classic` + `slf4j-api`.
 
 - (2017-12-02)package-info.java: What I Think!
 > I think using name to get a logger configured in the .xml file is easier now.
+
+## singleton(2017-12-26)
+Usage for initiation a singleton. The simplest way is to initiation at the beginning, but better way is to use lazy-init.
+- `Simplest`: pre-init;
+- `DoubleCheck`: lazy-init & depend on yourself to control the initiation;
+- `StaticInnerClass`: lazy-init & depend on java to control the initiation;
+- `Perfect`: lazy-init & depend on java Enum to control the initiation.
