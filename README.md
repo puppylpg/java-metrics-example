@@ -81,3 +81,6 @@ Usage for initiation a singleton. The simplest way is to initiation at the begin
 - `DoubleCheck`: lazy-init & depend on yourself to control the initiation;
 - `StaticInnerClass`: lazy-init & depend on java to control the initiation;
 - `Perfect`: lazy-init & depend on java Enum to control the initiation.
+
+## enums(2017-12-27)
+Usage for Enum.

@@ -21,6 +21,9 @@ public class SerializeDemo {
     private static class Student implements Serializable {
         String name;
         int age;
+        /**
+         * transient can not be Serialized
+         */
         transient String think;
         List<String> dreams;
     }
