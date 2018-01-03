@@ -25,3 +25,5 @@ hs_err_pid*
 # Intellijidea
 .idea
 *.iml
+
+test/resources/cache/

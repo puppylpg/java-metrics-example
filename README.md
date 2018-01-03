@@ -84,3 +84,12 @@ Usage for initiation a singleton. The simplest way is to initiation at the begin
 
 ## enums(2017-12-27)
 Usage for Enum.
+
+## encryption(2018-01-03)
+Usage for encryption using org.apache.commons.codec.digest.DigestUtils.
+
+## bytes(2018-01-03)
+Usage for byte.
+
+## http(2018-01-03)
+Usage for java http & okhttp3.
