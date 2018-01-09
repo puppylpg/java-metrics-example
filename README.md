@@ -102,3 +102,6 @@ Ways to load config.
 
 ## filemonitors(2018-01-09)
 Using apache commons-io to monitor files.
+
+## fileio(2018-01-09)
+Ways of reading & writing text/binary files.
