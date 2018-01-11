@@ -84,6 +84,7 @@ Usage for initiation a singleton. The simplest way is to initiation at the begin
 
 ## enums(2017-12-27)
 Usage for Enum.
+- (2018-01-11)Season: two ways of parsing Enum.
 
 ## encryption(2018-01-03)
 Usage for encryption using org.apache.commons.codec.digest.DigestUtils.
@@ -102,6 +103,8 @@ Ways to load config.
 
 ## filemonitors(2018-01-09)
 Using apache commons-io to monitor files.
+- (2018-01-09)directorylevel: monitor directory.
+- (2018-01-11)singlefile: monitor a file.
 
 ## fileio(2018-01-09)
 Ways of reading & writing text/binary files.

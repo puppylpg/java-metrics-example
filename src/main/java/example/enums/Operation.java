@@ -47,6 +47,7 @@ public enum Operation {
         }
 
         // valueOf(String): get a Enum object by string
+        // 必须和枚举类型字面量一样，也就是得大写
         Operation op = Operation.valueOf("times".toUpperCase());
         System.out.println(op + " <=> " + op.getName());
 

@@ -1,4 +1,4 @@
-package example.filemonitors;
+package example.filemonitors.directorylevel;
 
 import org.apache.commons.io.monitor.FileAlterationListenerAdaptor;
 

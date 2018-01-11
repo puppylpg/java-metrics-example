@@ -1,4 +1,4 @@
-package example.filemonitors;
+package example.filemonitors.directorylevel;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -11,7 +11,7 @@ import java.util.Calendar;
  */
 public class FileMonitorDemo {
 
-    private static final String DIR = "config/fileChanges";
+    private static final String DIR = "tmp/fileChanges";
 
     private static void loadFiles() {
         try {
