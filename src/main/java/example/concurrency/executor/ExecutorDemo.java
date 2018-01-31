@@ -40,7 +40,7 @@ public class ExecutorDemo {
      *      2. corePoolSize < x < maximumPoolSize: create thread only none is idle;
      *      3. = maximumPoolSize: stop creating thread
      *
-     *      if corePoolSize == maximumPoolSize, that's a fix size pool.
+     *      if corePoolSize == maximumPoolSize, that's a fixed size pool.
      *
      * keepAliveTime: the maximum time that excess idle threads will wait for new tasks before terminating
      *
@@ -54,8 +54,8 @@ public class ExecutorDemo {
      */
     private static ExecutorService namedPool =
             new ThreadPoolExecutor(
-                    3,
-                    5,
+                    4,
+                    8,
                     20L,
                     TimeUnit.MILLISECONDS,
                     new LinkedBlockingQueue<>(),
@@ -94,16 +94,21 @@ public class ExecutorDemo {
     public static void main(String [] args) throws InterruptedException, ExecutionException, TimeoutException {
 
         // these methods are all in ExecutorService
+
+        System.out.println("\nExecute a task:");
         executeTask();
+        System.out.println("\nSubmit tasks:");
         submitTask();
+        System.out.println("\ninvokeAny:");
         invokeAnyTask();
+        System.out.println("\ninvokeAll:");
         invokeAllTask();
 
         shutdownPool();
     }
 
     private static void executeTask() {
-        namedPool.execute(createRunnableTask());
+        namedPool.execute(taskRun);
     }
 
     /**
@@ -114,7 +119,7 @@ public class ExecutorDemo {
      * @throws TimeoutException
      */
     private static void submitTask() throws ExecutionException, InterruptedException, TimeoutException {
-        Future<?> future = namedPool.submit(createRunnableTask());
+        Future<?> future = namedPool.submit(taskRun);
         System.out.println("FutureResult of taskRun: " + future.get(waitingTimeout, TimeUnit.MILLISECONDS));
 
         Future<String> futureResult = namedPool.submit(createCallableTask("Love Ya~"));
