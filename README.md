@@ -64,7 +64,8 @@ Usage for serializing a Java object.
 Other special usage in java.
 - (2017-11-19)class `Void`;
 - (2017-12-07)usage for String("xxx") & difference in `equals()` and `==`;
-- (2018-02-01)usage for psuedo-typedef;
+- (2018-02-01)Extends Map: usage for psuedo-typedef;
+- (2018-02-01)Implements Iterable: for-each for your class;
 
 ## logs(2017-12-02)
 Usage for log4j(outdated)/log4f2/logback/slf4j.
