@@ -110,3 +110,8 @@ Using apache commons-io to monitor files.
 
 ## fileio(2018-01-09)
 Ways of reading & writing text/binary files.
+
+## weak reference
+Usage about Weak Reference in java.
+Strong > Soft > Weak > Phantom.
+- (2018-03-06)WeakrefDemo & ReferenceQueueDemo
