@@ -114,4 +114,6 @@ Ways of reading & writing text/binary files.
 ## weak reference
 Usage about Weak Reference in java.
 Strong > Soft > Weak > Phantom.
-- (2018-03-06)WeakrefDemo & ReferenceQueueDemo
+- (2018-03-06)WeakrefDemo: usage for WeakReference.
+- (2018-03-06)ReferenceQueueDemo: usage for ReferenceQueue and WeakReference.
+- (2018-03-07)WeakHashMapDemo: usage for WeakHashMap.

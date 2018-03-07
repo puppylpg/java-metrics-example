@@ -34,6 +34,7 @@ public class ReferenceQueueDemo {
         // 把四个员工都加上弱引用，并删了原来的第一个强引用
         List<WeakReference<Employee>> weakEmployees = new ArrayList<>();
         for (int i = 0; i < employees.length; i++) {
+            // gc清理时会注册到该queue：
             weakEmployees.add(new WeakReference<>(employees[i], queue));
             employees[i] = null;
         }
