@@ -19,7 +19,8 @@ Usage for java8.
 ### stream(2017-11-16)
 Usage of lambda expressions in Java8.
 - (2017-11-16)`map()` vs. `flatMap()`;
-- (2017-11-16)`distinct()` & `toMap()`
+- (2017-11-16)`distinct()` & `toMap()`;
+- (2018-03-12)`parallel()` in `IntStream` or `parallelStream()` in `Collection`;
 
 #### distinct(2017-11-17)
 Usage of distinct() and it's replacement.
