@@ -31,6 +31,9 @@ Usage for java.util.function.
 - (2017-11-19)usage of all kinds of functions in java.util.function;
 - (2017-11-19)use Function to replace other functions in java.util.function.
 
+### flat(2018-03-11)
+- (2018-03-11)usage of flatMap and map.
+
 ### Collectors and Stream.collect()(2017-11-22)
 Usage for `java.util.Stream.Collectors`. `Stream.collect(Collector)` can collect a stream
 into Collections using different Collectors, and `Collectors` can offer
