@@ -5,53 +5,57 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
-@SuppressWarnings("all")
 public class FutureTaskDemo {
-    public static void main(String[] args) {
+
+    /**
+     * 使用{@link FutureTask}创建任务；
+     * 使用{@link Thread}启动任务；
+     * 使用{@link FutureTask#get()}获取结果；
+     * @param args
+     * @throws InterruptedException
+     */
+    public static void main(String[] args) throws InterruptedException {
         // 初始化一个Callable对象和FutureTask对象
-        Callable pAccount = new PrivateAccount();
-        FutureTask futureTask = new FutureTask(pAccount);
+        Callable<Integer> sparkTask = new SparkTask();
+        FutureTask<Integer> futureTask = new FutureTask<>(sparkTask);
+
         // 使用futureTask创建一个线程
-        Thread pAccountThread = new Thread(futureTask);
+        Thread thread = new Thread(futureTask);
         System.out.println("futureTask线程现在开始启动，启动时间为：" + System.nanoTime());
-        pAccountThread.start();
+        thread.start();
+
         System.out.println("主线程开始执行其他任务");
-        // 从其他账户获取总金额
-        int totalMoney = new Random().nextInt(100000);
-        System.out.println("现在你在其他账户中的总金额为" + totalMoney);
-        System.out.println("等待私有账户总金额统计完毕...");
+        System.out.println("等待futureTask给结果...");
+
         // 测试后台的计算线程是否完成，如果未完成则等待
         while (!futureTask.isDone()) {
-            try {
                 Thread.sleep(500);
-                System.out.println("私有账户计算未完成继续等待...");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+                System.out.println("还没有结果...");
         }
-        System.out.println("futureTask线程计算完毕，此时时间为" + System.nanoTime());
-        Integer privateAccountMoney = null;
+        System.out.println("结果出来啦，此时时间为" + System.nanoTime());
+
+        int answer = 0;
         try {
-            privateAccountMoney = (Integer) futureTask.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+            answer = futureTask.get();
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-        System.out.println("您现在的总金额为：" + totalMoney + privateAccountMoney.intValue());
+
+        System.out.println("结果是：" + answer);
     }
 }
 
-@SuppressWarnings("all")
-class PrivateAccount implements Callable {
-    Integer totalMoney;
+/**
+ * 模拟一个耗时的spark任务
+ */
+class SparkTask implements Callable<Integer> {
+    private Integer answer;
 
     @Override
-    public Object call() throws Exception {
+    public Integer call() throws Exception {
         Thread.sleep(5000);
-        totalMoney = new Integer(new Random().nextInt(10000));
-        System.out.println("您当前有" + totalMoney + "在您的私有账户中");
-        return totalMoney;
+        answer = new Random().nextInt(10000);
+        System.out.println("答案是：" + answer);
+        return answer;
     }
-
 }
