@@ -31,6 +31,7 @@ public class Teacher implements IListener {
         String question = "An animal!";
         student.forEach( student -> {
             System.out.println(name + ": Ok, please give me a word, " + student.getName() + ". " + question);
+            // 传入自己，因为自己实现了回调接口
             student.think(this, question);
         });
     }

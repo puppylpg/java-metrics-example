@@ -16,6 +16,11 @@ public class Student {
 
     private String animal;
 
+    /**
+     * 带回调参数的方法，完成之后要调用回调以给出反馈结果。
+     * @param listener 回调接口
+     * @param question
+     */
     public void think(IListener listener, String question) {
         System.out.println(name + " is thinking... " + question);
 
