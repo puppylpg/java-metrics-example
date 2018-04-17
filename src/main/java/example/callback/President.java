@@ -8,6 +8,11 @@ import java.util.ArrayList;
 /**
  * 和老师相比，自己没有实现回调，而是直接传入了一个回调实例。
  *
+ * 其实，{@link President}也是相当于把自己的this传给了被调用方，因为{@link Listener}包含有
+ * {@link President}的this，所以才能使用{@link President}的属性。
+ *
+ * 只有不想使用调用方{@link President}本身的任何东西，这时候才会搞一个和调用方毫无关联的外部类（或者一个静态嵌套类）。
+ *
  * @author liuhaibo on 2018/04/12
  */
 public class President {
