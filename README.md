@@ -128,6 +128,9 @@ Strong > Soft > Weak > Phantom.
 ## callback(2018-04-12)
 Usage for call back. And sync vs. async.
 
-## proxy
+## proxy(2018-04-19)
 Usage for static proxy & dynamic proxy in Java.
 Especially the relations between RPC & dynamic proxy.
+
+### utils(2018-04-19)
+Show the content of proxy generated.

@@ -22,13 +22,7 @@ public class TestCounter {
         pendingJobs.dec();
         return queue.poll();
     }
-    /**
-     * TODO
-     * @author scutshuxue.chenxf
-     * @param args
-     * void
-     * @throws InterruptedException
-     */
+
     public static void main(String[]args) throws InterruptedException {
         // TODOAuto-generated method stub
         TestCounter tc = new TestCounter();
