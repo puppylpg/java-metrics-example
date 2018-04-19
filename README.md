@@ -118,12 +118,16 @@ Using apache commons-io to monitor files.
 ## fileio(2018-01-09)
 Ways of reading & writing text/binary files.
 
-## weak reference
+## weak reference(2018-03-06)
 Usage about Weak Reference in java.
 Strong > Soft > Weak > Phantom.
 - (2018-03-06)WeakrefDemo: usage for WeakReference.
 - (2018-03-06)ReferenceQueueDemo: usage for ReferenceQueue and WeakReference.
 - (2018-03-07)WeakHashMapDemo: usage for WeakHashMap.
 
-## callback
+## callback(2018-04-12)
 Usage for call back. And sync vs. async.
+
+## proxy
+Usage for static proxy & dynamic proxy in Java.
+Especially the relations between RPC & dynamic proxy.
