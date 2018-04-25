@@ -8,7 +8,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class FileIODemo {
 
-    private static final String FILE = "config/example.properties";
+    private static final String FILE = "src/main/resources/config/example.properties";
 
     public static void main(String[] args) throws IOException {
         System.out.println("\nRead Text File: FileReader(+BufferedReader)");

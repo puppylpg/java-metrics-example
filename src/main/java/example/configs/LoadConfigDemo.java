@@ -18,8 +18,7 @@ import java.util.Properties;
  */
 public class LoadConfigDemo {
 
-    private static final String FILE_NAME = "config/example.properties";
-//    private static final String FILE_NAME = "configInResources/example.properties";
+    private static final String FILE_NAME = "src/main/resources/config/example.properties";
     private static  Properties config = new Properties();
     private static final Splitter LIST_SPLITTER = Splitter.on(",");
     private static final Splitter.MapSplitter MAP_SPLITTER = Splitter.on(",").withKeyValueSeparator(":");
