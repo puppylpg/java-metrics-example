@@ -16,7 +16,7 @@ import java.util.Date;
  */
 public class MonitorSingleFile {
 
-    private static final String FILE = "config/example.properties";
+    private static final String FILE = "src/main/resources/config/example.properties";
 
     private static void loadFile() {
         String content = null;

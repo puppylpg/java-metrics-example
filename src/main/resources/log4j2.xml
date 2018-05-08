@@ -16,7 +16,7 @@
 
         # Rolling appender
         <RollingFile name="roll-by-size"
-                     fileName="target/log4j2/roll-by-size.log" filePattern="target/log4j2/roll-by-size.%i.log.gz"
+                     fileName="target/log4j2/roll-by-size.log" filePattern="target/log4j2/roll-by-size.%i.log"
                      ignoreExceptions="false">
             <PatternLayout>
                 <Pattern>%d{yyyy-MM-dd HH:mm:ss} %p %m%n</Pattern>
@@ -29,7 +29,7 @@
 
         <RollingFile name="roll-by-time"
                      fileName="target/log4j2/roll-by-time.log"
-                     filePattern="target/log4j2/roll-by-time.%d{MM-dd-yyyy-HH-mm}.log.gz"
+                     filePattern="target/log4j2/roll-by-time.%d{yyyy-MM-dd-HH-mm}.log"
                      ignoreExceptions="false">
             <PatternLayout>
                 <Pattern>%d{yyyy-MM-dd HH:mm:ss} %p %m%n</Pattern>
@@ -39,7 +39,7 @@
 
         <RollingFile name="roll-by-time-and-size"
                      fileName="target/log4j2/roll-by-time-and-size.log"
-                     filePattern="target/log4j2/roll-by-time-and-size.%d{MM-dd-yyyy-HH-mm}.%i.log.gz"
+                     filePattern="target/log4j2/roll-by-time-and-size.%d{yyyy-MM-dd-HH-mm}.%i.log"
                      ignoreExceptions="false">
             <PatternLayout>
                 <Pattern>%d{yyyy-MM-dd HH:mm:ss} %p %m%n</Pattern>
@@ -51,7 +51,7 @@
             </Policies>
             <DefaultRolloverStrategy>
                 <Delete basePath="${baseDir}" maxDepth="2">
-                    <IfFileName glob="target/log4j2/roll-by-time-and-size.*.log.gz"/>
+                    <IfFileName glob="target/log4j2/roll-by-time-and-size.*.log"/>
                     <IfLastModified age="20s"/>
                 </Delete>
             </DefaultRolloverStrategy>

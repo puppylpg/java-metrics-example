@@ -10,7 +10,7 @@ import java.nio.file.Paths;
  */
 public class ReadFileDemo {
 
-    private static final String FILE = "config/example.properties";
+    private static final String FILE = "src/main/resources/config/example.properties";
 
     public static void main(String[] args) throws IOException {
         String content = new String(Files.readAllBytes(Paths.get(FILE)), StandardCharsets.UTF_8);
