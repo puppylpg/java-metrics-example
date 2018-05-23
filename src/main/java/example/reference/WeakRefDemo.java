@@ -36,7 +36,7 @@ public class WeakRefDemo {
 
         System.gc();
 
-        // object with only soft reference will be cleaned only memory is not enough: 用来做缓存很不错
+        // object with only soft reference will be cleaned only if memory is not enough: 用来做缓存很不错
         // object with only weak reference will be cleaned after a gc operation:
         // ThreadLocalMap的key不是ThreadLocal而是ThreadLocal的弱引用，可以防止线程池里的线程被重用的时候，threadLocals变量里的东西也被共享
         System.out.println("After gc...");

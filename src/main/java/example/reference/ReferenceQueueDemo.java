@@ -52,7 +52,7 @@ public class ReferenceQueueDemo {
         reclaimEmployees(weakEmployees);
 
         System.out.println("=== print register queue ===");
-        // 已注册的曾经指向四个员工的弱引用（为什么是逆序的，不是queue吗。。。）
+        // 已注册的曾经指向四个员工的弱引用
         Reference<? extends Employee> employeeRef;
         do {
             employeeRef = queue.poll();
