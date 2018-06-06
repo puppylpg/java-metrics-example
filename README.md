@@ -43,7 +43,6 @@ different Collectors to support `Stream.collect(Collector)`.
 
 ## concurrency(2017-11-21)
 A deep research for java's concurrency.
-- (2017-11-21)use `ThreadLocal`;
 
 ### blockingqueue(2017-11-21)
 Usage for implemented classes of BlockingQueue.
@@ -55,6 +54,9 @@ Usage for thread pool(ExecutorService).
 
 ### produconsu
 Producer & Comsumer. Usage for wait()/notify()/notifyAll() in Object.
+
+### tl
+- (2017-11-21)use `ThreadLocal`;
 
 ## jackson(2017-11-29)
 - (2017-11-29)Jackson annotation for polymorphism;
@@ -134,3 +136,6 @@ Especially the relations between RPC & dynamic proxy.
 
 ### utils(2018-04-19)
 Show the content of proxy generated.
+
+### jmhbenchmark(2018-06-06)
+jmh benchmark test.
