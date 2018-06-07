@@ -11,7 +11,7 @@ public class BytesDemo {
 
     public static void main(String [] args) {
         BytesDemo bytesDemo = new BytesDemo();
-        bytesDemo.decodeEnglist();
+        bytesDemo.decodeEnglish();
         bytesDemo.decodeChinese();
         bytesDemo.other();
     }
@@ -19,7 +19,7 @@ public class BytesDemo {
     /**
      * English is always suitable for every charset =.=
      */
-    private void decodeEnglist() {
+    private void decodeEnglish() {
         System.out.println("===> Only English: ");
         byte[] bytes = str.getBytes(StandardCharsets.ISO_8859_1);
         System.out.println("Decode in ISO_8859_1: " + new String(bytes, StandardCharsets.ISO_8859_1));

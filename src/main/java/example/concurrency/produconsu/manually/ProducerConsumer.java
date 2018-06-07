@@ -1,5 +1,6 @@
-package example.concurrency.produconsu;
+package example.concurrency.produconsu.manually;
 
+import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -9,8 +10,9 @@ import java.util.Queue;
 public class ProducerConsumer {
 
     public static void main(String [] args) {
-        // 在Java中，LinkedList实现了队列的接口
-        Queue<Integer> queue = new LinkedList<>();
+        // 在Java中，ArrayDeque/LinkedList实现了队列的接口
+//        Queue<Integer> queue = new LinkedList<>();
+        Queue<Integer> queue = new ArrayDeque<>();
         int maxSize = 5, totalNum = 10;
         Producer producer = new Producer(queue, maxSize, "p1", totalNum);
         Consumer consumer1 = new Consumer(queue, "c1");

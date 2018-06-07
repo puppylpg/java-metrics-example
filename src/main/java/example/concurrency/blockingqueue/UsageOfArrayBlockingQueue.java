@@ -24,7 +24,7 @@ public class UsageOfArrayBlockingQueue {
         }
     }
 
-    private static class Snooze{
+    private static class Snooze {
         long sleep;
 
         Snooze(long ms) throws InterruptedException {

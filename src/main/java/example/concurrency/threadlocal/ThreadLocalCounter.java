@@ -1,4 +1,4 @@
-package example.concurrency.tl;
+package example.concurrency.threadlocal;
 
 /**
  * @author liuhaibo on 2017/11/21

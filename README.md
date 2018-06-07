@@ -53,9 +53,14 @@ Usage for implemented classes of BlockingQueue.
 Usage for thread pool(ExecutorService).
 
 ### produconsu
-Producer & Comsumer. Usage for wait()/notify()/notifyAll() in Object.
+#### manually
+Producer & Consumer. Usage for wait()/notify()/notifyAll() in Object.
 
-### tl
+#### advanced
+Advanced way to implement Producer & Consumer.
+Using BlockingQueue as critical resource.
+
+### threadlocal
 - (2017-11-21)use `ThreadLocal`;
 
 ## jackson(2017-11-29)

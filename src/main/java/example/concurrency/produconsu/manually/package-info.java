@@ -2,7 +2,7 @@
  * wait()：释放锁，并等待被唤醒；
  *      当前线程必须拥有此对象的monitor（即锁），才能调用某个对象的wait()方法能让当前线程阻塞，
  *      这种阻塞是通过提前释放synchronized锁，重新去请求锁导致的阻塞，这种请求必须有其他线程通过notify()或者notifyAll（）唤醒重新竞争获得锁
- *      即：爸爸写会儿，锁给你们，搞完了叫我，但是我醒了（且抢到锁之后）就从这里继续执行。
+ *      即：爸爸歇会儿，锁给你们，搞完了叫我，但是我醒了（且抢到锁之后）就从这里继续执行。
  *
  * notify()/notifyAll()：唤醒那些等待的线程；
  *      notify()或者notifyAll()方法并不释放锁，必须等到synchronized方法或者语法块执行完才真正释放锁
@@ -22,7 +22,7 @@
  *      Thread.sleep(xxx)只交出cpu，不交出锁，自己歇了，cpu有可能被低级线程抢到；
  *      yield()只交出cpu，不交出锁，不可能把cpu交给更低级的线程，因为它交出cpu之后，立刻就竞争了；
  */
-package example.concurrency.produconsu;
+package example.concurrency.produconsu.manually;
 
 /*
 

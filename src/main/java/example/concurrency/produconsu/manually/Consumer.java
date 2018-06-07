@@ -1,4 +1,4 @@
-package example.concurrency.produconsu;
+package example.concurrency.produconsu.manually;
 
 import java.util.Queue;
 
