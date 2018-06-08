@@ -63,6 +63,13 @@ Using BlockingQueue as critical resource.
 ### threadlocal
 - (2017-11-21)use `ThreadLocal`;
 
+### synchronization
+Ways of synchronization in java.
+#### latch
+Use CountDownLatch.
+#### semaphore
+Use Semaphore.
+
 ## jackson(2017-11-29)
 - (2017-11-29)Jackson annotation for polymorphism;
 
@@ -144,3 +151,8 @@ Show the content of proxy generated.
 
 ### jmhbenchmark(2018-06-06)
 jmh benchmark test.
+
+## thread
+Operations about Thread.
+### interrupt
+The interrupt in Thread.
