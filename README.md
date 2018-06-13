@@ -155,4 +155,4 @@ jmh benchmark test.
 ## thread
 Operations about Thread.
 ### interrupt
-The interrupt in Thread.
+The interruption in Thread.
