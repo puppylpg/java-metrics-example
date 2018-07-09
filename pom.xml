@@ -17,6 +17,71 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <!--jar-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>example.java8.stream.ListToMap</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!--assemble a jar with dependency or even with MANIFEST-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.1.0</version>
+                <!--configuration can be in outer or inner-->
+                <!--<configuration>-->
+                <!--<descriptorRefs>-->
+                <!--<descriptorRef>jar-with-dependencies</descriptorRef>-->
+                <!--</descriptorRefs>-->
+                <!--<archive>-->
+                <!--<manifest>-->
+                <!--<mainClass>example.configs.LoadConfigDemo</mainClass>-->
+                <!--</manifest>-->
+                <!--</archive>-->
+                <!--<appendAssemblyId>false</appendAssemblyId>-->
+                <!--</configuration>-->
+                <executions>
+                    <execution>
+                        <id>assemble-a-jar-with-dependency</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>assemble-a-jar-with-dependency-manifest</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <!--assign a name by yourself-->
+                            <finalName>manifest</finalName>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <archive>
+                                <manifest>
+                                    <mainClass>example.configs.LoadConfigDemo</mainClass>
+                                </manifest>
+                            </archive>
+                            <appendAssemblyId>false</appendAssemblyId>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 

@@ -156,3 +156,8 @@ jmh benchmark test.
 Operations about Thread.
 ### interrupt
 The interruption in Thread.
+
+## properties
+ - `-Dxxx.yyy=zzz`.
+ - add maven-assembly-plugin & maven-jar-plugin;
+
