@@ -129,8 +129,12 @@ Using apache commons-io to monitor files.
 - (2018-01-09)directorylevel: monitor directory.
 - (2018-01-11)singlefile: monitor a file.
 
-## fileio(2018-01-09)
+## io(2018-08-13)
+Java IO.
+### fileio(2018-01-09)
 Ways of reading & writing text/binary files.
+### memoryio(2018-08-13)
+Ways of reading & writing bytes in memory. And something more, like gzip etc.
 
 ## weak reference(2018-03-06)
 Usage about Weak Reference in java.

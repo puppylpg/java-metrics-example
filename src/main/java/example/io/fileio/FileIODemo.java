@@ -1,4 +1,4 @@
-package example.fileio;
+package example.io.fileio;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
