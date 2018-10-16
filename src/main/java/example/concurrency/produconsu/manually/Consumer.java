@@ -23,8 +23,8 @@ public class Consumer extends Thread {
         long start = System.currentTimeMillis();
         System.out.println(name + " start at " + start);
 
-        // 最终，生产者退出后，消费者消费完了最后的数据，wait()，却没人再唤醒他们
-        while (true) {
+        // exit when getting interrupted
+        while (!Thread.currentThread().isInterrupted()) {
             synchronized (queue) {
                 System.out.println("----- I get the lock~(" + name + ") -----");
                 while (queue.isEmpty()) {
@@ -34,13 +34,18 @@ public class Consumer extends Thread {
                         // 被唤醒之后，如果能拿到锁，是从这里接着继续执行的
                         System.out.println("----- I am awake and get the lock(" + name + ") -----");
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        // restore interruption status
+                        Thread.currentThread().interrupt();
+                        System.out.println("Being interrupted, give up now: " + name);
+                        break;
                     }
                 }
-                System.out.println("<= pop  <= " + name + ": " + queue.remove());
-                System.out.println("----- Hey, get up!(" + name + ") -----");
-                queue.notifyAll();
-                System.out.println("----- I am gonna release the lock~(" + name + ") -----");
+                if (!queue.isEmpty()) {
+                    System.out.println("<= pop  <= " + name + ": " + queue.remove());
+                    System.out.println("----- Hey, get up!(" + name + ") -----");
+                    queue.notifyAll();
+                    System.out.println("----- I am gonna release the lock~(" + name + ") -----");
+                }
             }
         }
     }

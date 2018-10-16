@@ -19,12 +19,15 @@ public class Consumer implements Runnable {
         long start = System.currentTimeMillis();
         System.out.println(name + " start at " + start);
 
-        while (true) {
+        // exit when getting interrupted
+        while (!Thread.currentThread().isInterrupted()) {
             synchronized (queue) {
                 try {
                     System.out.println("<= pop  <= " + name + ": " + queue.take());
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    // restore interruption status
+                    Thread.currentThread().interrupt();
+                    System.out.println("Being interrupted, give up now: " + name);
                 }
             }
         }

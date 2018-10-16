@@ -95,7 +95,7 @@
         <appender-ref ref="FILE_SEND_SUCCEED" />
     </logger>
 
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="stdout"/>
         <appender-ref ref="fileout"/>
     </root>
