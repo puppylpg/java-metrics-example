@@ -153,8 +153,10 @@ Especially the relations between RPC & dynamic proxy.
 ### utils(2018-04-19)
 Show the content of proxy generated.
 
-### jmhbenchmark(2018-06-06)
+## jmhbenchmark(2018-06-06)
 jmh benchmark test.
+### jmh
+jmh tutorials.
 
 ## thread
 Operations about Thread.
@@ -164,4 +166,8 @@ The interruption in Thread.
 ## properties
  - `-Dxxx.yyy=zzz`.
  - add maven-assembly-plugin & maven-jar-plugin;
+
+## guava
+### immutable
+Guava immutable utils.
 
