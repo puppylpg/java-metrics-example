@@ -1,4 +1,4 @@
-package example.concurrency.produconsu.advanced;
+package example.concurrency.bbuffer.advanced;
 
 import java.util.concurrent.BlockingQueue;
 

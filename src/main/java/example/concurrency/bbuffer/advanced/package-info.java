@@ -7,4 +7,4 @@
  *
  * 这次是将{@link java.util.concurrent.BlockingQueue}作为临界资源，作为生产者-消费者的缓冲区。
  */
-package example.concurrency.produconsu.advanced;
+package example.concurrency.bbuffer.advanced;

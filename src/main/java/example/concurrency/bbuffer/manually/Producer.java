@@ -1,8 +1,16 @@
-package example.concurrency.produconsu.manually;
+package example.concurrency.bbuffer.manually;
 
 import java.util.Queue;
 
 /**
+ * 与自旋等待或休眠等待的实现相比，条件队列没有改变原来的语义，且在多个方面进行了优化：
+ * cpu效率、上下文切换开销、响应性等。
+ *
+ * 如果某个功能通过自旋等待或者轮询+休眠无法实现，那么可粗略认为条件队列也无法实现。
+ *
+ * @see example.concurrency.bbuffer.immature.SpinningBoundedBuffer
+ * @see example.concurrency.bbuffer.immature.SleepyBoundedBuffer
+ *
  * @author liuhaibo on 2018/4/10
  */
 public class Producer extends Thread{

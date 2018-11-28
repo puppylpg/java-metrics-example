@@ -52,8 +52,11 @@ Usage for implemented classes of BlockingQueue.
 ### executor(2017-12-20)
 Usage for thread pool(ExecutorService).
 
-### produconsu
+### bbuffer
+#### immature(2018-11-29)
+Use spinning wait or sleep to implement bounded buffer.
 #### manually
+User condition queue to implement bounded buffer.
 Producer & Consumer. Usage for wait()/notify()/notifyAll() in Object.
 
 #### advanced

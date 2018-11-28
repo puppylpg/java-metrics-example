@@ -1,4 +1,4 @@
-package example.concurrency.produconsu.manually;
+package example.concurrency.bbuffer.manually;
 
 import java.util.Queue;
 
@@ -9,7 +9,7 @@ public class Consumer extends Thread {
 
     // 锁对象最好定义成final，要不然如果一个线程正在调用锁，
     // 另一个通过setQueue把queue给换了，gg，这时候另一个线程
-    // 会发现拿到了新的queue的锁，然后两个线程就同时执行本来锁住的代码块了
+    // 会发现拿到了新的queue的锁，然后两个线程就同时执行本来应该被锁住的代码块了
     private final Queue<Integer> queue;
     private String name;
 

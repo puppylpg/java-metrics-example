@@ -22,8 +22,7 @@
  *      Thread.sleep(xxx)只交出cpu，不交出锁，自己歇了，cpu有可能被低级线程抢到；
  *      yield()只交出cpu，不交出锁，不可能把cpu交给更低级的线程，因为它交出cpu之后，立刻就竞争了；
  */
-package example.concurrency.produconsu.manually;
-
+package example.concurrency.bbuffer.manually;
 /*
 
 // The standard idiom for calling the wait method in Java
@@ -31,9 +30,12 @@ package example.concurrency.produconsu.manually;
 synchronized (sharedObject) {
     while (condition) {
         // (Releases lock, and reacquires on wakeup)
-        sharedObject.wait();
+        sharedObject.wait(); // 获取该对象的锁的线程进入该对象的条件队列
     }
     // do action based upon condition e.g. take or put into queue
+
+    // notify other threads
+    notifyAll(); // 通知该对象的条件队列里的所有的线程醒醒，看看条件是否满足了。所以要用while进行判断
 }
 
 */

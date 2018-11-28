@@ -1,4 +1,4 @@
-package example.concurrency.produconsu.manually;
+package example.concurrency.bbuffer.manually;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
