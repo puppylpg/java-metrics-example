@@ -149,6 +149,8 @@ Usage for call back. And sync vs. async.
 ## proxy(2018-04-19)
 Usage for static proxy & dynamic proxy in Java.
 Especially the relations between RPC & dynamic proxy.
+### monitor(2018-11-27)
+Learning AOP and found that dynamic proxy is just to create a new object(proxy) with combined functions(codes).
 
 ### utils(2018-04-19)
 Show the content of proxy generated.
