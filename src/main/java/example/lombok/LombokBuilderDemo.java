@@ -21,15 +21,11 @@ public class LombokBuilderDemo {
     }
 
     public static void main(String... strings) {
-        // generate a builder
-        Student.StudentBuilder studentBuilder = Student.builder();
-
-        // set fields
-        studentBuilder.age(5).name("Lily");
-        studentBuilder.dreams(Arrays.asList("sleep", "eat", "study"));
-
-        // generate object
-        Student student = studentBuilder.build();
+        Student student = Student.builder()
+                .age(5)
+                .name("Lily")
+                .dreams(Arrays.asList("eat", "sleep", "hitDouDou"))
+                .build();
 
         System.out.println(student);
     }
