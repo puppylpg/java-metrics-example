@@ -179,3 +179,5 @@ Guava immutable utils.
 ## immutable
 Immutable object in multiple threads.
 
+## centraldogma
+Demo of using centraldogma to config.

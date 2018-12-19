@@ -176,6 +176,11 @@
             <artifactId>guava</artifactId>
             <version>27.0-jre</version>
         </dependency>
+        <dependency>
+            <groupId>com.linecorp.centraldogma</groupId>
+            <artifactId>centraldogma-client-armeria-legacy</artifactId>
+            <version>0.33.0</version>
+        </dependency>
 
 
         <!-- LOGs -->
