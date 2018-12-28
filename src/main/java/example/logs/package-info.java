@@ -48,6 +48,6 @@
  * SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
  * SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
  *
- * 这里的选择顺序就是pom.xml里定义的这几个依赖的顺序
+ * 这里的选择顺序依赖于jvm，所以可认为不同的jvm的选择是不确定的。参阅：https://stackoverflow.com/a/53954115/7676237
  */
 package example.logs;
