@@ -39,7 +39,7 @@ public class CustomClassLoader extends ClassLoader {
     @Override
     public Class<?> loadClass(String name) throws ClassNotFoundException {
         if (name.startsWith(USER_LOADED_PACKAGE_PREFIX)) {
-            System.out.println("loading class '" + name + "' by defined classloader: " + CustomClassLoader.class);
+            System.out.println("loading class '" + name + "' by custom classloader: " + CustomClassLoader.class);
             return getClass(name);
         }
         System.out.println("loading class '" + name + "' by papa classloader: " + CustomClassLoader.class.getClassLoader());
@@ -96,11 +96,11 @@ public class CustomClassLoader extends ClassLoader {
     }
 
     /**
-     * 在加载{@link Foo}的时候，{@link Foo}所依赖的类也将由我们自定义的类加载器加载。
+     * 在加载{@link Foooo}的时候，{@link Foooo}所依赖的类也将由我们自定义的类加载器加载。
      * 具体来说，在调用{@link ClassLoader#defineClass(String, byte[], int, int)}的时候，
-     * 又把{@link Foo}里面用到的类load了一遍，所以有了{@link Object}、{@link System}和{@link java.io.PrintStream}：
+     * 又把{@link Foooo}里面用到的类load了一遍，所以有了{@link Object}、{@link System}和{@link java.io.PrintStream}：
      *
-     * loading class 'example.classloader.Foo' by defined classloader: class example.classloader.CustomClassLoader
+     * loading class 'example.classloader.Foooo' by custom classloader: class example.classloader.CustomClassLoader
      * loading class 'java.lang.Object' by papa classloader: sun.misc.Launcher$AppClassLoader@18b4aac2
      * loading class 'java.lang.System' by papa classloader: sun.misc.Launcher$AppClassLoader@18b4aac2
      * loading class 'java.io.PrintStream' by papa classloader: sun.misc.Launcher$AppClassLoader@18b4aac2
@@ -114,8 +114,8 @@ public class CustomClassLoader extends ClassLoader {
      * In our example, for the classes in {@link #USER_LOADED_PACKAGE_PREFIX} package, we do load them without asking the parent.
      */
     public static void main(String[] args) throws Exception {
-        CustomClassLoader customClassLoader = new CustomClassLoader(Foo.class.getClassLoader());
-        Class<?> classFoo = customClassLoader.loadClass("example.classloader.Foo");
+        CustomClassLoader customClassLoader = new CustomClassLoader(Foooo.class.getClassLoader());
+        Class<?> classFoo = customClassLoader.loadClass("example.classloader.Foooo");
 
         // invoke instance method
         Object instance = classFoo.newInstance();
