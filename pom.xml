@@ -181,7 +181,11 @@
             <artifactId>centraldogma-client-armeria-legacy</artifactId>
             <version>0.33.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>3.4.13</version>
+        </dependency>
 
         <!-- LOGs -->
         <!-- log4j -->
