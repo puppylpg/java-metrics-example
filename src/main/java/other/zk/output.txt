@@ -1,0 +1,80 @@
+2019-03-11 16:11:53 INFO Initiating client connection, connectString=localhost:2181 sessionTimeout=3000 watcher=other.zk.ZkCommander@4d591d15
+2019-03-11 16:11:53 INFO Opening socket connection to server localhost/0:0:0:0:0:0:0:1:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-11 16:11:53 INFO Socket connection established to localhost/0:0:0:0:0:0:0:1:2181, initiating session
+2019-03-11 16:11:53 INFO Session establishment complete on server localhost/0:0:0:0:0:0:0:1:2181, sessionid = 0x10000a9045f000c, negotiated timeout = 4000
+Every thing is ok for whole zk or node: null
+Node exists: /cowsay
+Node changed: /cowsay
+Starting child: cowsay "Hello, world."
+ _________________
+< "Hello, world." >
+ -----------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+Node changed: /cowsay
+Stopping child
+Starting child: cowsay "Hello, world."
+ _________________
+< "Hello, world." >
+ -----------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+Woops, node deleted: /cowsay
+No node: /cowsay
+Wow, new node created: /cowsay
+Node exists: /cowsay
+Node changed: /cowsay
+Stopping child
+Starting child: cowsay "love zk."
+ ____________
+< "love zk." >
+ ------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+2019-03-11 16:13:12 INFO Unable to read additional data from server sessionid 0x10000a9045f000c, likely server has closed socket, closing socket connection and attempting reconnect
+2019-03-11 16:13:13 INFO Opening socket connection to server localhost/0:0:0:0:0:0:0:1:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-11 16:13:13 INFO Socket error occurred: localhost/0:0:0:0:0:0:0:1:2181: 拒绝连接
+2019-03-11 16:13:15 INFO Opening socket connection to server localhost/127.0.0.1:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-11 16:13:15 INFO Socket error occurred: localhost/127.0.0.1:2181: 拒绝连接
+2019-03-11 16:13:17 INFO Opening socket connection to server localhost/0:0:0:0:0:0:0:1:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-11 16:13:17 INFO Socket error occurred: localhost/0:0:0:0:0:0:0:1:2181: 拒绝连接
+2019-03-11 16:13:18 INFO Opening socket connection to server localhost/0:0:0:0:0:0:0:1:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-11 16:13:18 INFO Socket error occurred: localhost/0:0:0:0:0:0:0:1:2181: 拒绝连接
+2019-03-11 16:13:20 INFO Opening socket connection to server localhost/127.0.0.1:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-11 16:13:20 INFO Socket error occurred: localhost/127.0.0.1:2181: 拒绝连接
+2019-03-11 16:13:22 INFO Opening socket connection to server localhost/0:0:0:0:0:0:0:1:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-11 16:13:22 INFO Socket error occurred: localhost/0:0:0:0:0:0:0:1:2181: 拒绝连接
+2019-03-11 16:13:23 INFO Opening socket connection to server localhost/0:0:0:0:0:0:0:1:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-11 16:13:23 INFO Socket error occurred: localhost/0:0:0:0:0:0:0:1:2181: 拒绝连接
+2019-03-11 16:13:25 INFO Opening socket connection to server localhost/127.0.0.1:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-11 16:13:25 INFO Socket error occurred: localhost/127.0.0.1:2181: 拒绝连接
+2019-03-11 16:13:27 INFO Opening socket connection to server localhost/0:0:0:0:0:0:0:1:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-11 16:13:27 INFO Socket error occurred: localhost/0:0:0:0:0:0:0:1:2181: 拒绝连接
+2019-03-11 16:13:28 INFO Opening socket connection to server localhost/127.0.0.1:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-11 16:13:28 INFO Socket error occurred: localhost/127.0.0.1:2181: 拒绝连接
+2019-03-11 16:13:30 INFO Opening socket connection to server localhost/127.0.0.1:2181. Will not attempt to authenticate using SASL (unknown error)
+2019-03-11 16:13:30 INFO Socket connection established to localhost/127.0.0.1:2181, initiating session
+2019-03-11 16:13:30 INFO Session establishment complete on server localhost/127.0.0.1:2181, sessionid = 0x10000a9045f000c, negotiated timeout = 4000
+Every thing is ok for whole zk or node: null
+Node changed: /cowsay
+Stopping child
+Starting child: cowsay "love zk."
+ ____________
+< "love zk." >
+ ------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+Process finished with exit code 130 (interrupted by signal 2: SIGINT)
