@@ -188,3 +188,6 @@ Show usage for classloader.
 # other
 ## zk
 How to utilize zookeeper and its callback.
+### recipes
+Ways to utilize zookeeper to implement some distributed system base components.
+
