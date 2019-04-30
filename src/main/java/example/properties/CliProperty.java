@@ -1,5 +1,9 @@
 package example.properties;
 
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
+
 /**
  * @author liuhaibo on 2018/07/09
  */
@@ -19,5 +23,20 @@ public class CliProperty {
      */
     public static void main(String ... args) {
         System.out.println(System.getProperty("liuhaibo.love"));
+        printSystemProperties();
+        printSystemEnvironments();
+    }
+
+    private static void printSystemProperties() {
+        System.out.println("===== Properties =====");
+        Properties properties = System.getProperties();
+        Set<String> keys = properties.stringPropertyNames();
+        keys.forEach(key -> System.out.println(key + "=" + properties.get(key)));
+    }
+
+    private static void printSystemEnvironments() {
+        System.out.println("===== Environments =====");
+        Map<String, String> environments = System.getenv();
+        environments.forEach((key, value) -> System.out.println(key + "=" + value));
     }
 }
