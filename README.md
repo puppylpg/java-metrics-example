@@ -112,6 +112,9 @@ Usage for initiation a singleton. The simplest way is to initiation at the begin
 Usage for Enum.
 - (2018-01-11)Season: two ways of parsing Enum.
 
+## exception(2019-07-29)
+Usage for exception and cause for exception.
+
 ## encryption(2018-01-03)
 Usage for encryption using org.apache.commons.codec.digest.DigestUtils.
 
