@@ -13,7 +13,7 @@ import java.util.Queue;
  *
  * @author liuhaibo on 2018/4/10
  */
-public class Producer extends Thread{
+public class Producer extends Thread {
 
     // 锁对象最好定义成final，要不然如果一个线程正在调用锁，
     // 另一个通过setQueue把queue给换了，gg，这时候另一个线程
@@ -28,6 +28,7 @@ public class Producer extends Thread{
         this.maxSize = maxSize;
         this.name = name;
         this.totalNum = totalNum;
+        super.setName(name);
     }
 
     @Override
@@ -51,6 +52,8 @@ public class Producer extends Thread{
                 System.out.println("+++++ Hey, get up!(" + name + ") +++++");
                 queue.notifyAll();
                 System.out.println("+++++ I am gonna release the lock~(" + name + ") +++++");
+                // 只要不释放锁，被唤醒的线程就不会执行。不用担心notify到释放锁的时间太长，其他线程得不到锁又wait了。。。
+                // 这不是“醒来”，“醒来”更适合表述sleep
             }
         }
         System.out.println("+++++ EXIT!(" + name + ") +++++");

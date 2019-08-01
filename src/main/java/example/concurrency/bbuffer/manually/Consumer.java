@@ -16,6 +16,7 @@ public class Consumer extends Thread {
     Consumer(Queue<Integer> queue, String name) {
         this.queue = queue;
         this.name = name;
+        super.setName(name);
     }
 
     @Override
@@ -25,6 +26,7 @@ public class Consumer extends Thread {
 
         // exit when getting interrupted
         while (!Thread.currentThread().isInterrupted()) {
+            System.out.println("----- Try to get the lock(" + name + ") -----");
             synchronized (queue) {
                 System.out.println("----- I get the lock~(" + name + ") -----");
                 while (queue.isEmpty()) {

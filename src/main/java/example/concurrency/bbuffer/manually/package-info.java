@@ -1,4 +1,5 @@
 /**
+ * wait/notify/notifyAll是属于Object的方法，在Object上构成阻塞队列。
  * wait()：释放锁，并等待被唤醒；
  *      当前线程必须拥有此对象的monitor（即锁），才能调用某个对象的wait()方法能让当前线程阻塞，
  *      这种阻塞是通过提前释放synchronized锁，重新去请求锁导致的阻塞，这种请求必须有其他线程通过notify()或者notifyAll（）唤醒重新竞争获得锁
@@ -18,9 +19,13 @@
  *      使用notifyAll可以唤醒某些可能被恶意等待的线程，所以优先选用。
  *
  *
+ * 以下是Thread的方法，不是Object的，和阻塞队列无关，和锁无关：
  * 多说一句，Thread.sleep(xxx) vs. yield()：
  *      Thread.sleep(xxx)只交出cpu，不交出锁，自己歇了，cpu有可能被低级线程抢到；
  *      yield()只交出cpu，不交出锁，不可能把cpu交给更低级的线程，因为它交出cpu之后，立刻就竞争了；
+ *
+ * 他们之间的相似性，大概就是wait的时候是无法继续执行的，sleep的时候也是无法执行的。都休眠了。yield是不休眠的。
+ * wait方法，调用了native的wait(0)方法，代表永久休眠，除非被唤醒。但是wait(n)在休眠方面有点儿像sleep(n)
  */
 package example.concurrency.bbuffer.manually;
 /*

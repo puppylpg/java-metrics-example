@@ -168,8 +168,10 @@ jmh tutorials.
 
 ## thread
 Operations about Thread.
+- thread factory;
 ### interrupt
 The interruption in Thread.
+
 
 ## properties
  - `-Dxxx.yyy=zzz`.
