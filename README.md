@@ -190,6 +190,10 @@ Demo of using centraldogma to config.
 ## classloader
 Show usage for classloader.
 
+## net
+About NetworkInterface, InetAddress etc.
+- NetworkInterfaceDemo: about NetworkInterface.
+
 # other
 ## zk
 How to utilize zookeeper and its callback.
