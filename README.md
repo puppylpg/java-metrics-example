@@ -194,6 +194,10 @@ Show usage for classloader.
 About NetworkInterface, InetAddress etc.
 - NetworkInterfaceDemo: about NetworkInterface.
 
+## url
+To tell you URL doesn't equals to httpUrl. It's an abstraction for resources.
+Ways to operate URL.
+
 # other
 ## zk
 How to utilize zookeeper and its callback.
