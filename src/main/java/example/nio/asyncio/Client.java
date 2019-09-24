@@ -1,6 +1,5 @@
 package example.nio.asyncio;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 
@@ -8,6 +7,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author liuhaibo on 2018/05/09
@@ -31,7 +31,7 @@ public class Client {
         if (mes == null || mes.isEmpty()) {
             return;
         }
-        byte[] bytes = mes.getBytes("UTF-8");
+        byte[] bytes = mes.getBytes(StandardCharsets.UTF_8);
         int size = bytes.length;
         ByteBuffer buffer = ByteBuffer.allocate(size);
 

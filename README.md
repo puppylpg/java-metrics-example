@@ -198,6 +198,9 @@ About NetworkInterface, InetAddress etc.
 To tell you URL doesn't equals to httpUrl. It's an abstraction for resources.
 Ways to operate URL.
 
+## nio
+None-Block I/O。
+
 # other
 ## zk
 How to utilize zookeeper and its callback.

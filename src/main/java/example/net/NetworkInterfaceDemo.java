@@ -9,6 +9,9 @@ import java.util.List;
  * A network interface is the point of interconnection between a device and any of its network connections.
  * 一般我们都称为网卡，但未必都是硬件的，比如loopback（只是非硬件，并不是virtual。虚拟出的子网卡才是virtual）
  *
+ * A NetworkInterface object contains a name and a set of IP addresses assigned to it.
+ * So binding to any of these addresses will guarantee communication through this interface.
+ *
  * lo = loopback
  *
  * pichu@Archer ~ $ ip addr
