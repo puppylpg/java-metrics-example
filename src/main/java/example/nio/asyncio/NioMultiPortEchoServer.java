@@ -76,6 +76,7 @@ public class NioMultiPortEchoServer {
 
                     // 是socket上有可读的数据来了
                 } else if ((key.readyOps() & SelectionKey.OP_READ) == SelectionKey.OP_READ) {
+                    // TODO: infinite read request, why?
                     // Read the data
                     SocketChannel sc = (SocketChannel) key.channel();
 

@@ -201,6 +201,12 @@ Ways to operate URL.
 ## nio
 None-Block I/O。
 
+## classpath
+Load file from classpath rather than relative path!
+So, use ClassLoader.getResource() to acquire URL every time.
+Then, we can get truly absolute path from URL.getPath(), which
+can be parsed into Path or File later.
+
 # other
 ## zk
 How to utilize zookeeper and its callback.

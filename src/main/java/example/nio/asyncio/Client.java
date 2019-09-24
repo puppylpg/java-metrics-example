@@ -24,6 +24,7 @@ public class Client {
             String msg = RandomStringUtils.randomAlphanumeric(RandomUtils.nextInt(20, 40));
             System.out.println(i + " === " + msg);
             sendMessage(sc, msg);
+            sc.close();
         }
     }
 
@@ -41,6 +42,5 @@ public class Client {
         while (buffer.hasRemaining()) {
             socketChannel.write(buffer);
         }
-        socketChannel.close();
     }
 }
