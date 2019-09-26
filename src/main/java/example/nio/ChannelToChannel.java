@@ -2,9 +2,7 @@ package example.nio;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 
 /**
@@ -27,20 +25,34 @@ public class ChannelToChannel {
         FileChannel fcin = fin.getChannel();
         FileChannel fcout = fout.getChannel();
 
+        // 如果两个通道有一个是FileChannel，则可以直接通道到通道；
+        // 此外要注意，在SoketChannel的实现中，SocketChannel只会传输此刻准备好的数据（可能不足count字节）。
+        // 因此，SocketChannel可能不会将请求的所有数据(count个字节)全部传输到FileChannel中。
+        // 另外，这个可以使用零拷贝，所以更高效
+//        fcin.transferTo(0, fcin.size(), fcout);
+
         ByteBuffer buffer = ByteBuffer.allocate(2014);
 
-        while (true) {
-            // clear. ready to read: position = 0, limit = capacity
-            buffer.clear();
-            int r = fcin.read(buffer);
+//        while (true) {
+//            buffer.clear();
+//            int r = fcin.read(buffer);
+//
+//            if (r == -1) {
+//                break;
+//            }
+//
+//            buffer.flip();
+//            fcout.write(buffer);
+//        }
 
-            if (r == -1) {
-                break;
-            }
-
+        while(fcin.read(buffer) > 0) {
             // flip. ready to write: limit = position, position = 0
             buffer.flip();
             fcout.write(buffer);
+            // clear. ready to read: position = 0, limit = capacity
+            buffer.clear();
         }
+        fcin.close();
+        fcout.close();
     }
 }

@@ -92,6 +92,12 @@ public class BufferDemo {
         while (buffer.remaining() > 0) {
             System.out.println(buffer.get());
         }
+
+//        buffer.rewind();
+//        buffer.compact();
+        // the following two are used together
+//        buffer.mark();
+//        buffer.reset();
     }
 
     public static ByteBuffer normalBuffer() {

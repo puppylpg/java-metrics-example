@@ -2,19 +2,15 @@ package example.nio.asyncio;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.ServerSocket;
 import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
+import java.nio.channels.*;
 import java.util.Iterator;
 import java.util.Set;
 
 /**
  * ServerSocketChannel只能在Selector上注册OP_ACCEPT事件；
  * SocketChannel则可以注册OP_READ和OP_WRITE等
- *
+ * <p>
  * 这个程序可以仅使用一个线程，因为它只是一个演示，但是在现实场景中，创建一个线程池来负责 I/O 事件处理中的耗时部分会更有意义。
  */
 public class NioMultiPortEchoServer {
@@ -38,11 +34,9 @@ public class NioMultiPortEchoServer {
             ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
             serverSocketChannel.configureBlocking(false);
             // channel绑定到相应的端口
-            ServerSocket serverSocket = serverSocketChannel.socket();
-            serverSocket.bind(new InetSocketAddress(port));
-            // 告诉selector，我们对OP_ACCEPT事件感兴趣（这是适用于ServerSocketChannel的唯一事件类型）
-            // SelectionKey的作用就是，当事件发生时，selector提供对应于那个事件的SelectionKey
-            SelectionKey key = serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
+            serverSocketChannel.socket().bind(new InetSocketAddress(port));
+
+            registerServerSocket(serverSocketChannel, selector);
 
             System.out.println("Going to listen on " + port);
         }
@@ -60,53 +54,63 @@ public class NioMultiPortEchoServer {
             while (it.hasNext()) {
                 SelectionKey key = it.next();
 
+                // 处理过了，就删了，防止一会儿重复处理。（可认为Selector只往set里加，但是不删！！！）
+                it.remove();
+
+                // SelectionKey.channel()方法返回的通道需要转型成你要处理的类型，如ServerSocketChannel或SocketChannel等。
                 // 是有新连接了
-                if ((key.readyOps() & SelectionKey.OP_ACCEPT) == SelectionKey.OP_ACCEPT) {
-                    // Accept the new connection
-                    ServerSocketChannel ssc = (ServerSocketChannel) key.channel();
-                    // 不用担心accept()方法会阻塞，因为已经确定这个channel（这个端口）上是有一个新连接了
-                    SocketChannel sc = ssc.accept();
-                    sc.configureBlocking(false);
-
-                    // 我们期望从这个socket上读取数据，所以也注册到selector，等通知再来读。这次注册的是OP_READ：“可读”就通知我
-                    // Add the new connection to the selector
-                    SelectionKey newKey = sc.register(selector, SelectionKey.OP_READ);
-
-                    System.out.println("Got connection from " + sc);
+                if (key.isAcceptable()) {
+                    acceptSocketAndRegisterIt(key, selector);
 
                     // 是socket上有可读的数据来了
-                } else if ((key.readyOps() & SelectionKey.OP_READ) == SelectionKey.OP_READ) {
-                    // TODO: infinite read request, why?
-                    // Read the data
-                    SocketChannel sc = (SocketChannel) key.channel();
-
-                    // Echo data
-                    int bytesEchoed = 0;
-                    while (true) {
-                        echoBuffer.clear();
-
-                        int r = sc.read(echoBuffer);
-
-                        if (r <= 0) {
-                            break;
-                        }
-
-                        echoBuffer.flip();
-
-                        sc.write(echoBuffer);
-                        bytesEchoed += r;
-                    }
-
-                    System.out.println("Echoed " + bytesEchoed + " from " + sc);
+                } else if (key.isReadable()) {
+                    readSocket(key);
                 }
-                // 处理过了，就删了，这个set一直是动态增长/减少的
-                it.remove();
             }
-
-//            System.out.println( "going to clear" );
+            // 如果上面没有一个一个删掉，这里直接清空也行
 //            selectedKeys.clear();
-//            System.out.println( "cleared" );
         }
+    }
+
+    private void registerServerSocket(ServerSocketChannel serverSocketChannel, Selector selector) throws ClosedChannelException {
+        // 告诉selector，我们对OP_ACCEPT事件感兴趣（这是适用于ServerSocketChannel的唯一事件类型）
+        // SelectionKey的作用就是，当事件发生时，selector提供对应于那个事件的SelectionKey
+        // 这里，ServerSocketChannel所支持的操作只有SelectionKey.OP_ACCEPT
+        SelectionKey key = serverSocketChannel.register(selector, serverSocketChannel.validOps());
+    }
+
+    private void acceptSocketAndRegisterIt(SelectionKey key, Selector selector) throws IOException {
+        // Accept the new connection
+        ServerSocketChannel serverSocketChannel = (ServerSocketChannel) key.channel();
+        // 不用担心accept()方法会阻塞，因为已经确定这个channel（这个端口）上是有一个新连接了
+        SocketChannel socketChannel = serverSocketChannel.accept();
+        socketChannel.configureBlocking(false);
+
+        // 我们期望从这个socket上读取数据，所以也注册到selector，等通知再来读。这次注册的是OP_READ：“可读”就通知我
+        // Add the new connection to the selector
+        SelectionKey newKey = socketChannel.register(selector, SelectionKey.OP_READ);
+
+        System.out.println("+++ New connection: " + socketChannel);
+    }
+
+    private void readSocket(SelectionKey key) throws IOException {
+        // Read the data
+        SocketChannel socketChannel = (SocketChannel) key.channel();
+
+        // Echo data
+        int bytesEchoed = 0, r = 0;
+        while ((r = socketChannel.read(echoBuffer)) > 0) {
+            // flip. ready to write: limit = position, position = 0
+            echoBuffer.flip();
+            socketChannel.write(echoBuffer);
+            bytesEchoed += r;
+            // clear. ready to read: position = 0, limit = capacity
+            echoBuffer.clear();
+        }
+        System.out.println("Echoed " + bytesEchoed + " from " + socketChannel);
+        // CLOSE SOCKET AFTER HANDLED
+        socketChannel.close();
+        System.out.println("--- Close connection: " + socketChannel);
     }
 
     static public void main(String args[]) throws Exception {

@@ -18,19 +18,23 @@ public class ChannelBufferDemo {
         FileInputStream fin = new FileInputStream(".gitignore");
         FileChannel fc = fin.getChannel();
 
-        ByteBuffer buffer = ByteBuffer.allocate(1024);
+        ByteBuffer buffer = ByteBuffer.allocate(10);
 
-        fc.read(buffer);
+        // 读完文件
+        while (fc.read(buffer) > 0) {
+            buffer.flip();
 
-        buffer.flip();
-
-        int i = 0;
-        while (buffer.remaining() > 0) {
-            byte b = buffer.get();
-            System.out.println("Character " + i + ": " + ((char) b));
-            i++;
+            int i = 0;
+            // 读完buffer
+            while (buffer.hasRemaining()) {
+                byte b = buffer.get();
+                System.out.println("Character " + i + ": " + ((char) b));
+                i++;
+            }
+            buffer.clear();
         }
 
+        fc.close();
         fin.close();
     }
 
@@ -43,14 +47,18 @@ public class ChannelBufferDemo {
 
         ByteBuffer buffer = ByteBuffer.allocate(1024);
 
-        for (int i = 0; i < message.length; ++i) {
-            buffer.put(message[i]);
+        for (byte aMessage : message) {
+            buffer.put(aMessage);
         }
 
         buffer.flip();
 
-        fc.write(buffer);
+        // 读完buffer
+        while(buffer.hasRemaining()) {
+            fc.write(buffer);
+        }
 
+        fc.close();
         fout.close();
     }
 }

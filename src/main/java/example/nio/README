@@ -20,6 +20,60 @@ https://www.ibm.com/developerworks/cn/education/java/j-nio/j-nio.html
 不像普通io，如果底层buffer只读了一半，之前剩的一半没被清掉的话，输出的时候会一起输出出来。
 
 
+关于Selector：
+Selector（选择器）是Java NIO中能够检测一到多个NIO通道，并能够知晓通道是否为诸如读写事件做好准备的组件。这样，一个单独的线程可以管理多个channel，从而管理多个网络连接。
+
+与Selector一起使用时，Channel必须处于非阻塞模式下。这意味着不能将FileChannel与Selector一起使用，因为FileChannel不能切换到非阻塞模式。而套接字通道都可以。
+
+
+关于SelectionKey：
+- channel；
+- selector；
+- interest集合；
+- ready集合；
+- 一个可选的attachment对象；
+
+
+关于处理Selector返回的SelectionKey：
+1. 注意每次迭代末尾的keyIterator.remove()调用。Selector不会自己从已选择键集中移除SelectionKey实例。必须在处理完通道时自己移除。下次该通道变成就绪时，Selector会再次将其放入已选择键集中。
+2. SelectionKey.channel()方法返回的通道需要转型成你要处理的类型，如ServerSocketChannel或SocketChannel等。
+
+删除：如果不删，下次有另一个通道就绪，select()返回1，但是遍历Set的时候会有两个SelectionKey。因为你上次没删！！！
+
+SelectionKey.channel()方法返回的通道需要转型成你要处理的类型，如ServerSocketChannel或SocketChannel等。
+
+
+关于FileChannel：
+FileChannel无法设置为非阻塞模式，它总是运行在阻塞模式下。
+我们无法直接打开一个FileChannel，需要通过使用一个InputStream、OutputStream或RandomAccessFile来获取一个FileChannel实例：
+RandomAccessFile aFile = new RandomAccessFile("data/nio-data.txt", "rw");
+FileChannel inChannel = aFile.getChannel();
+
+
+关于SocketChannel和ServerSocketChannel：
+他们默认都是阻塞的，和原有IO类似。也可以设置成非阻塞的，这个时候就要和Selector一起使用了。否则，对于ServerSocketChannel，accept会立即返回，不是阻塞的：
+while(true){
+    SocketChannel socketChannel =
+            serverSocketChannel.accept();
+
+    if(socketChannel != null){
+        //do something with socketChannel...
+    }
+}
+就得不停检查accept调完之后到底有没有建立连接！这代码也太搞笑了。果然，NIO用不好，还不如原来的阻塞式IO好用……
+
+同样对于SocketChannel的非阻塞模式：
+socketChannel.configureBlocking(false);
+socketChannel.connect(new InetSocketAddress("http://jenkov.com", 80));
+
+while(! socketChannel.finishConnect() ){
+    //wait, or do something else...
+}
+connect也不阻塞了，调了立刻返回，所以根本不知道成功没，也得不停检查……
+
+所以，学习是多么的重要！！！
+
+
 
 总结：
 正如您所看到的， NIO 库有大量的特性。在一些新特性（例如文件锁定和字符集）提供新功能的同时，许多特性在优化方面也非常优秀。
