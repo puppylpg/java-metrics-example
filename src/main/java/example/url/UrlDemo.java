@@ -1,8 +1,10 @@
 package example.url;
 
 import java.io.*;
+import java.net.JarURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.jar.Manifest;
 
 /**
  * （我算是看出来了，涉及到底层的东西：open socket，write磁盘，flush输出流之类的东西，
@@ -41,6 +43,7 @@ public class UrlDemo {
         httpProtocolURL(printWriter);
         fileProtocolURL(printWriter);
         classpathFileURL(printWriter);
+        jarFileProtocolURL(printWriter);
 
         // System.out只能关一次，所以我只能这么写了
         printWriter.close();
@@ -69,6 +72,14 @@ public class UrlDemo {
     private static void classpathFileURL(PrintWriter printWriter) throws IOException {
         URL url = UrlDemo.class.getClassLoader().getResource("log4j.xml");
         readURL(url, printWriter);
+    }
+
+    private static void jarFileProtocolURL(PrintWriter printWriter) throws IOException {
+        // JAR URL is `jar:<url>!/{entry}`
+        URL url = new URL("jar:file:///C:/Users/puppylpg/Codes/java-examples/target/java-examples-1.0-SNAPSHOT.jar!/");
+        JarURLConnection connection = (JarURLConnection) url.openConnection();
+        Manifest manifest = connection.getManifest();
+        printWriter.println(manifest);
     }
 
     private static void readURL(URL url, PrintWriter printWriter) throws IOException {

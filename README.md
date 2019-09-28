@@ -200,6 +200,8 @@ Ways to operate URL.
 
 ## nio
 None-Block I/O。
+### FileSystem
+Mount a jar/zip file as a new file system. Then read/write/... it.
 
 ## classpath
 Load file from classpath rather than relative path!
