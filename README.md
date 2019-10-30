@@ -195,9 +195,9 @@ About NetworkInterface, InetAddress etc.
 - NetworkInterfaceDemo: about NetworkInterface.
 
 ## url
-To tell you URL doesn't equals to httpUrl. It's an abstraction for resources.
+- To tell you URL doesn't equals to httpUrl. It's an abstraction for resources.
 Ways to operate URL.
-
+- Difference between URI and URL.
 ## nio
 None-Block I/O。
 ### FileSystem
