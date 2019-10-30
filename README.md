@@ -186,6 +186,8 @@ Immutable object in multiple threads.
 
 ## centraldogma
 Demo of using centraldogma to config.
+- Register a watcher;
+- Wait for initial value;
 
 ## classloader
 Show usage for classloader.
