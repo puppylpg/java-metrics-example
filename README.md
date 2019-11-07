@@ -72,6 +72,8 @@ Ways of synchronization in java.
 Use CountDownLatch.
 #### semaphore
 Use Semaphore.
+#### lock
+Use java.concurrent.lock to syn. Especially optimistic lock.
 
 ## jackson(2017-11-29)
 - (2017-11-29)Jackson annotation for polymorphism;
