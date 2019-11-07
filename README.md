@@ -114,6 +114,7 @@ Usage for Enum.
 
 ## exception(2019-07-29)
 Usage for exception and cause for exception.
+- try-with-resource usage;
 
 ## encryption(2018-01-03)
 Usage for encryption using org.apache.commons.codec.digest.DigestUtils.
