@@ -94,11 +94,11 @@ public class MultiImplementationCounterDemo {
             case SYNCHRONIZED:
                 return new Synchronized();
             case VOLATILE:
-                return new Volatile();
+                return new VolatileSynchronized();
             case STAMPED:
                 return new RWLockStamped();
             case OPTIMISTIC:
-                return new OptimisticStamped();
+                return new RWLockOptimisticStamped();
             default:
                 return null;
         }

@@ -4,7 +4,7 @@ import example.concurrency.synchronization.lock.counters.Counter;
 
 import java.util.concurrent.locks.StampedLock;
 
-public class OptimisticStamped implements Counter {
+public class RWLockOptimisticStamped implements Counter {
 
     private StampedLock rwlock = new StampedLock();
 

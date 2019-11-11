@@ -2,7 +2,7 @@ package example.concurrency.synchronization.lock.counters;
 
 public interface Counter {
 
-    public long getCount();
+    long getCount();
 
-    public void increment();
+    void increment();
 }
