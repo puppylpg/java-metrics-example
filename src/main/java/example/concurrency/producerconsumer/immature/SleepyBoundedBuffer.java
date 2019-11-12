@@ -1,4 +1,4 @@
-package example.concurrency.bbuffer.immature;
+package example.concurrency.producerconsumer.immature;
 
 /**
  * 重试方式二：轮询+休眠
@@ -11,7 +11,7 @@ package example.concurrency.bbuffer.immature;
  * 这一点只要清楚sleep和wait的区别，清楚Object的这些方法（操作某个object的条件队列）
  * 和Thread的方法（操作某个thread）的区别，就不会搞错。
  *
- * @see example.concurrency.bbuffer.manually.Producer
+ * @see example.concurrency.producerconsumer.waitnotify.Producer
  *
  * @author puppylpg on 2018/11/29
  */

@@ -1,4 +1,4 @@
-package example.concurrency.bbuffer.manually;
+package example.concurrency.producerconsumer.waitnotify;
 
 import java.util.Queue;
 
@@ -8,8 +8,8 @@ import java.util.Queue;
  *
  * 如果某个功能通过自旋等待或者轮询+休眠无法实现，那么可粗略认为条件队列也无法实现。
  *
- * @see example.concurrency.bbuffer.immature.SpinningBoundedBuffer
- * @see example.concurrency.bbuffer.immature.SleepyBoundedBuffer
+ * @see example.concurrency.producerconsumer.immature.SpinningBoundedBuffer
+ * @see example.concurrency.producerconsumer.immature.SleepyBoundedBuffer
  *
  * @author liuhaibo on 2018/4/10
  */
@@ -17,17 +17,17 @@ public class Producer extends Thread {
 
     // 锁对象最好定义成final，要不然如果一个线程正在调用锁，
     // 另一个通过setQueue把queue给换了，gg，这时候另一个线程
-    // 会发现拿到了新的queue的锁，然后两个线程就同时执行本来锁住的代码块了
+    // 会发现拿到了新的queue的锁，然后两个线程就同时执行本来应该锁住的代码块了
     private final Queue<Integer> queue;
     private int maxSize;
     private String name;
-    private int totalNum;
+    private int producerNum;
 
-    Producer(Queue<Integer> queue, int maxSize, String name, int totalNum) {
+    Producer(Queue<Integer> queue, int maxSize, String name, int producerNum) {
         this.queue = queue;
         this.maxSize = maxSize;
         this.name = name;
-        this.totalNum = totalNum;
+        this.producerNum = producerNum;
         super.setName(name);
     }
 
@@ -35,7 +35,7 @@ public class Producer extends Thread {
     public void run() {
         System.out.println(name + " start at " + System.currentTimeMillis());
         int i = 0;
-        while (i++ < totalNum) {
+        while (i++ < producerNum) {
             synchronized (queue) {
                 System.out.println("+++++ I get the lock~(" + name + ") +++++");
                 while (queue.size() >= maxSize) {

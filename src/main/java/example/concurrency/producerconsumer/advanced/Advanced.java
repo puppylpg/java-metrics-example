@@ -1,4 +1,4 @@
-package example.concurrency.bbuffer.advanced;
+package example.concurrency.producerconsumer.advanced;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -6,7 +6,7 @@ import java.util.concurrent.BlockingQueue;
 /**
  * @author liuhaibo on 2018/06/07
  */
-public class ProducerConsumer {
+public class Advanced {
 
     public static void main(String [] args) throws InterruptedException {
         int maxSize = 5;

@@ -1,4 +1,4 @@
-package example.concurrency.bbuffer.manually;
+package example.concurrency.producerconsumer.waitnotify;
 
 import java.util.Queue;
 

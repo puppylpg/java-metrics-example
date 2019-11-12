@@ -19,7 +19,7 @@
  * 且Object里的方法才是跟锁相关的（跟条件队列相关），而Thread里的方法无论怎么操作，**都跟锁无关**。
  * 所以wait会释放锁，而sleep不会，一定不要带着锁去sleep！
  */
-package example.concurrency.bbuffer;
+package example.concurrency.producerconsumer;
 
 /*
 

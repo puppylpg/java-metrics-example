@@ -1,7 +1,7 @@
-package example.concurrency.bbuffer.immature;
+package example.concurrency.producerconsumer.immature;
 
-import example.concurrency.bbuffer.immature.exception.BufferEmptyException;
-import example.concurrency.bbuffer.immature.exception.BufferFullException;
+import example.concurrency.producerconsumer.immature.exception.BufferEmptyException;
+import example.concurrency.producerconsumer.immature.exception.BufferFullException;
 
 import java.util.Queue;
 import java.util.concurrent.BlockingQueue;

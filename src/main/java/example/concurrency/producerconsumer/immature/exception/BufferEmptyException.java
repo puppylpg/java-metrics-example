@@ -1,4 +1,4 @@
-package example.concurrency.bbuffer.immature.exception;
+package example.concurrency.producerconsumer.immature.exception;
 
 /**
  * @author puppylpg on 2018/11/29

@@ -52,16 +52,19 @@ Usage for implemented classes of BlockingQueue.
 ### executor(2017-12-20)
 Usage for thread pool(ExecutorService).
 
-### bbuffer
+### producerconsumer
 #### immature(2018-11-29)
 Use spinning wait or sleep to implement bounded buffer.
-#### manually
+#### waitnotify
 User condition queue to implement bounded buffer.
 Producer & Consumer. Usage for wait()/notify()/notifyAll() in Object.
 
+#### condition
+Use Condition#await/signal to replace Object#wait/notify, to implement multiple condition queues.
+
 #### advanced
 Advanced way to implement Producer & Consumer.
-Using BlockingQueue as critical resource.
+Using BlockingQueue as critical resource. The underlying implement is Condition rather than Object#wait/notify.
 
 ### threadlocal
 - (2017-11-21)use `ThreadLocal`;

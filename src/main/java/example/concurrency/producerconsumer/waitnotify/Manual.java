@@ -1,4 +1,4 @@
-package example.concurrency.bbuffer.manually;
+package example.concurrency.producerconsumer.waitnotify;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
@@ -6,14 +6,14 @@ import java.util.Queue;
 /**
  * @author liuhaibo on 2018/4/10
  */
-public class ProducerConsumer {
+public class Manual {
 
     public static void main(String [] args) throws InterruptedException {
         // 在Java中，ArrayDeque/LinkedList实现了队列的接口
 //        Queue<Integer> queue = new LinkedList<>();
         Queue<Integer> queue = new ArrayDeque<>();
-        int maxSize = 5, totalNum = 10;
-        Producer producer = new Producer(queue, maxSize, "p1", totalNum);
+        int maxSize = 5, producerNum = 10;
+        Producer producer = new Producer(queue, maxSize, "p1", producerNum);
         Consumer consumer1 = new Consumer(queue, "c1");
         Consumer consumer2 = new Consumer(queue, "c2");
         consumer1.start();

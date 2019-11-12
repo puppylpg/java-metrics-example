@@ -27,7 +27,7 @@
  * 他们之间的相似性，大概就是wait的时候是无法继续执行的，sleep的时候也是无法执行的。都休眠了。yield是不休眠的。
  * wait方法，调用了native的wait(0)方法，代表永久休眠，除非被唤醒。但是wait(n)在休眠方面有点儿像sleep(n)
  */
-package example.concurrency.bbuffer.manually;
+package example.concurrency.producerconsumer.waitnotify;
 /*
 
 // The standard idiom for calling the wait method in Java
