@@ -222,6 +222,9 @@ can be parsed into Path or File later.
 Use jgit to implement git behaviors.
 - Add some porcelain high-level api demo;
 
+## gc
+GC parameters & logs to use.
+
 # other
 ## zk
 How to utilize zookeeper and its callback.
