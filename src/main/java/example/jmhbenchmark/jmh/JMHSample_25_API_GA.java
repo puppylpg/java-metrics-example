@@ -121,7 +121,7 @@ public class JMHSample_25_API_GA {
 
             // Printing a nice table...
             System.out.println("---------------------------------------");
-            System.out.printf("Baseline score: %10.2f %s%n",
+            System.out.printf("BaseCalculator score: %10.2f %s%n",
                     baseResult.getScore(),
                     baseResult.getScoreUnit()
             );

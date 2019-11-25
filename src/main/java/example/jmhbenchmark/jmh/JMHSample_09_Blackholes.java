@@ -57,7 +57,7 @@ public class JMHSample_09_Blackholes {
     double x2 = Math.PI * 2;
 
     /*
-     * Baseline measurement: how much single Math.log costs.
+     * BaseCalculator measurement: how much single Math.log costs.
      */
 
     @Benchmark
