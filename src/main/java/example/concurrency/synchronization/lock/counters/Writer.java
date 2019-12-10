@@ -14,7 +14,7 @@ public class Writer implements Runnable {
                 break;
             }
 
-            if (counter.getCount() > CounterDemo.TARGET_NUMBER) {
+            if (counter.getCount() >= CounterDemo.TARGET_NUMBER) {
                 System.out.println("Writer: write " + runTimes + " times.");
                 CounterDemo.statistic(System.currentTimeMillis(), false, runTimes);
                 break;

@@ -1,5 +1,7 @@
 package example.concurrency.synchronization.lock.counters;
 
+import example.concurrency.synchronization.lock.counters.counter.ReadWriteLockOptimisticStamped;
+
 public class Reader implements Runnable {
     private final Counter counter;
 
@@ -18,8 +20,13 @@ public class Reader implements Runnable {
             long count = counter.getCount();
             runTimes++;
 
-            if (count > CounterDemo.TARGET_NUMBER) {
-                System.out.println("Reader: read " + runTimes + " times.");
+            if (count >= CounterDemo.TARGET_NUMBER || runTimes >= CounterDemo.MAX_READ_TIMES) {
+                String failStr = "";
+//                if (counter instanceof ReadWriteLockOptimisticStamped) {
+//                    long failTimes = ((ReadWriteLockOptimisticStamped) counter).getFailTimes();
+//                    failStr = String.format("Fail times: %d. Fail percentage: %f", failTimes, failTimes * 1.0 / runTimes);
+//                }
+                System.out.println("Reader: read " + runTimes + " times." + failStr);
                 CounterDemo.statistic(System.currentTimeMillis(), true, runTimes);
                 break;
             }

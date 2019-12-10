@@ -11,12 +11,16 @@ import example.concurrency.synchronization.lock.counters.Counter;
 public class VolatileSynchronized implements Counter {
     private volatile long counter;
 
+    private final Object lock = new Object();
+
     public long getCount() {
         return counter;
     }
 
-    public synchronized void increment() {
-        // 流弊，如果不给一个写volatile的变量加锁，idea竟然会提醒：non-atomic operation on volatile value
-        ++counter;
+    public void increment() {
+        synchronized (lock) {
+            // 流弊，如果不给一个写volatile的变量加锁，idea竟然会提醒：non-atomic operation on volatile value
+            ++counter;
+        }
     }
 }

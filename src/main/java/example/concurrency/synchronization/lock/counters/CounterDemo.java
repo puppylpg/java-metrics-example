@@ -13,8 +13,9 @@ import java.util.concurrent.atomic.AtomicLongArray;
  */
 public class CounterDemo {
     static long TARGET_NUMBER = 1000000L;
-    private static int READ_THREADS = 2;
-    private static int WRITE_THREADS = 2;
+    static long MAX_READ_TIMES = TARGET_NUMBER * 10;
+    private static int READ_THREADS = 5;
+    private static int WRITE_THREADS = 1;
 
     private static ExecutorService es;
 
@@ -36,7 +37,7 @@ public class CounterDemo {
         SYNCHRONIZED,
         VOLATILE_SYNCHRONIZED,
         LOCK,
-        LOCK_FAIR,
+//        LOCK_FAIR,
         READ_WRITE_LOCK,
         READ_WRITE_LOCK_STAMPED,
         READ_WRITE_LOCK_OPTIMISTIC
@@ -106,8 +107,8 @@ public class CounterDemo {
                 return new VolatileSynchronized();
             case LOCK:
                 return new LockDefault();
-            case LOCK_FAIR:
-                return new LockFair();
+//            case LOCK_FAIR:
+//                return new LockFair();
             case READ_WRITE_LOCK:
                 return new ReadWriteLockDefault();
             case READ_WRITE_LOCK_STAMPED:

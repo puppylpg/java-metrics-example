@@ -11,7 +11,8 @@ public class ReadWriteLockOptimisticStamped implements Counter {
     private long counter;
 
     private long readTimes;
-    private long successTimes;
+//    private long successTimes;
+//    private long failTimes;
 
     /**
      * 乐观锁用法：先去读，读完看看改了没（乐观：赌一把，我猜大概率没改），
@@ -23,9 +24,10 @@ public class ReadWriteLockOptimisticStamped implements Counter {
         readTimes++;
 
         if (rwlock.validate(stamp)) {
-            successTimes++;
+//            successTimes++;
             return counter;
         } else {
+//            failTimes++;
             long readStamp = rwlock.readLock();
             try {
                 return counter;
@@ -46,12 +48,15 @@ public class ReadWriteLockOptimisticStamped implements Counter {
         }
     }
 
-    public long getSuccessTimes() {
-        return successTimes;
-    }
-
-
     public long getReadTimes() {
         return readTimes;
     }
+
+//    public long getFailTimes() {
+//        return failTimes;
+//    }
+//
+//    public long getSuccessTimes() {
+//        return successTimes;
+//    }
 }
