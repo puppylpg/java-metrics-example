@@ -22,6 +22,6 @@ public class BaseCalculator {
             sum += i;
         }
         long end = System.currentTimeMillis();
-        System.out.printf("sum=%d, time used=%d ms.", sum, end - start);
+        System.out.printf("sum=%d, time uased=%d ms.", sum, end - start);
     }
 }

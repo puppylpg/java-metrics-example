@@ -4,32 +4,29 @@ package example.concurrency.synchronization.lock.counters.counter;
 import example.concurrency.synchronization.lock.counters.Counter;
 
 import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.concurrent.locks.ReentrantLock;
 
-public class RWLock implements Counter {
-    private ReadWriteLock rwlock = new ReentrantReadWriteLock();
+public class LockDefault implements Counter {
+    private Lock lock = new ReentrantLock();
 
-    private Lock rlock = rwlock.readLock();
-    private Lock wlock = rwlock.writeLock();
 
     private long counter;
 
     public long getCount() {
+        lock.lock();
         try {
-            rlock.lock();
             return counter;
         } finally {
-            rlock.unlock();
+            lock.unlock();
         }
     }
 
     public void increment() {
+        lock.lock();
         try {
-            wlock.lock();
             ++counter;
         } finally {
-            wlock.unlock();
+            lock.unlock();
         }
     }
 }

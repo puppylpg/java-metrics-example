@@ -1,32 +1,32 @@
 package example.concurrency.synchronization.lock.counters.counter;
 
+
 import example.concurrency.synchronization.lock.counters.Counter;
 
-import java.util.concurrent.locks.StampedLock;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
-public class RWLockStamped implements Counter {
+public class LockFair implements Counter {
+    private Lock lock = new ReentrantLock(true);
 
-    private StampedLock rwlock = new StampedLock();
 
     private long counter;
 
     public long getCount() {
-        long stamp = rwlock.readLock();
-
+        lock.lock();
         try {
             return counter;
         } finally {
-            rwlock.unlockRead(stamp);
+            lock.unlock();
         }
     }
 
     public void increment() {
-        long stamp = rwlock.writeLock();
-
+        lock.lock();
         try {
             ++counter;
         } finally {
-            rwlock.unlockWrite(stamp);
+            lock.unlock();
         }
     }
 }

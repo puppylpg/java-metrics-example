@@ -77,6 +77,8 @@ Use CountDownLatch.
 Use Semaphore.
 #### lock
 Use java.concurrent.lock to syn. Especially optimistic lock.
+##### counters
+Demo to compare different locks' performance.
 
 ## jackson(2017-11-29)
 - (2017-11-29)Jackson annotation for polymorphism;
