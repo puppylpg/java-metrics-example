@@ -1,8 +1,5 @@
-package example.others;
+package example.unicode;
 
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
@@ -32,7 +29,7 @@ public class StringLength {
 //        String str = "皮卡丘yoo";
         String str = "皮卡皮卡皮卡丘";
 
-        // str.length=6
+        // str.length=6 char(UTF-16)的个数
         System.out.println("string.length = " + str.length());
         // byte.length = 12
         System.out.println("bytes.length = " + str.getBytes(StandardCharsets.UTF_8).length);

@@ -227,9 +227,12 @@ Use jgit to implement git behaviors.
 ## gc
 GC parameters & logs to use.
 
-# other
-## zk
+## other
+### zk
 How to utilize zookeeper and its callback.
-### recipes
+#### recipes
 Ways to utilize zookeeper to implement some distributed system base components.
+
+## unicode
+Demo for unicode.
 
