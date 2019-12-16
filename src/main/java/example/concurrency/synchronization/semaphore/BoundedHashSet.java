@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.concurrent.Semaphore;
 
 /**
- * 用了信号量，其实相当于mutex。
+ * 用了信号量，其实相当于mutex，或者说大小为N的BlockingQueue。
  * @author liuhaibo on 2018/06/08
  */
 public class BoundedHashSet<T> {
