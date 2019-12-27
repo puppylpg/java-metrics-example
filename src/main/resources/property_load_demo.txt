@@ -1,0 +1,32 @@
+key1=value
+key2 value
+key3:value
+# Just a comment
+! Also a comment
+
+# blank line is skipped
+
+#   line begin with space with be trimmed
+         key4:value
+
+# multi line is supported with tailing '\'
+key5=value1 value2 \
+value3
+
+# comment after '\' is useless
+key6= value \
+# useless
+
+# blank at the beginning, around the delimiter, will be ignored, but remember: only blank characters
+    key7   ====                 value
+
+# tailing space will not be ignored
+    key8        value
+
+# backward slash
+key9\=99:value
+
+# 汉字呢？不支持。只支持 ISO 8859-1 字符集
+键=值
+
+key10=value=value2=value3
