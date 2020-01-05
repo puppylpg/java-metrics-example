@@ -233,6 +233,9 @@ How to utilize zookeeper and its callback.
 #### recipes
 Ways to utilize zookeeper to implement some distributed system base components.
 
+## annotation
+Add code to understand annotation.
+
 ## unicode
 Demo for unicode.
 
