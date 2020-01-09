@@ -82,6 +82,23 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <executable>java</executable>
+                    <arguments>
+                        <argument>-Dliuhaibo.love=liuguilin-forever</argument>
+                        <argument>-cp</argument>
+                        <classpath/>
+                        <argument>example.properties.CliProperty</argument>
+                        <argument>arg1</argument>
+                        <argument>arg2</argument>
+                        <argument>arg3</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

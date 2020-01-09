@@ -13,9 +13,10 @@ public class TimeDemo {
         String concreteTime = new SimpleDateFormat("yyyyMMdd:HHmmss:SSS", Locale.CHINA).format(new Date());
         System.out.println(concreteTime);
 
-        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA).format(new Date());
+        Date now = new Date();
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA).format(now);
         System.out.println(date);
-        String time = new SimpleDateFormat("HH:mm:ss.SSS", Locale.CHINA).format(new Date());
+        String time = new SimpleDateFormat("HH:mm:ss.SSS", Locale.CHINA).format(now);
         System.out.println(time);
     }
 }

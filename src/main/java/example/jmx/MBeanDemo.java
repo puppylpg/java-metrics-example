@@ -24,28 +24,28 @@ import java.lang.management.ManagementFactory;
 public class MBeanDemo {
 
     public interface CountDownMBean {
-        public String getName();
+        String getName();
 
-        public int getCounter();
+        int getCounter();
 
         /**
          * counter +1
          */
-        public void increase();
+        void increase();
 
         /**
          * change the value of counter
          *
          * @param counter counter
          */
-        public void changeCounter(int counter);
+        void changeCounter(int counter);
 
         /**
          * this is 'Getter', and can be applied on counter directly
          *
          * @param counter
          */
-        public void setCounter(int counter);
+        void setCounter(int counter);
     }
 
     /**
@@ -71,8 +71,8 @@ public class MBeanDemo {
 
         @Override
         public void increase() {
-            System.out.println("counter +1");
             counter++;
+            System.out.println("counter +1: " + counter);
         }
 
         @Override

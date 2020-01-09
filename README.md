@@ -239,3 +239,6 @@ Add code to understand annotation.
 ## unicode
 Demo for unicode.
 
+# plugins
+- Add exec-maven-plugin;
+
