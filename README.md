@@ -239,6 +239,9 @@ Add code to understand annotation.
 ## unicode
 Demo for unicode.
 
+## generic
+About generic type erasure.
+
 # plugins
 - Add exec-maven-plugin;
 
