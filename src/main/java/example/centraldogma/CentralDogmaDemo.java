@@ -29,7 +29,7 @@ public class CentralDogmaDemo {
     }
 
     private static void getFile() {
-        CompletableFuture<Entry<String>> future = dogma.getFile("bid-server", "e-greedy", Revision.HEAD, Query.ofText("/request-flow-ratio"));
+        CompletableFuture<Entry<String>> future = dogma.getFile("bid-server", "config", Revision.HEAD, Query.ofText("/e-greedy/flow-ratio"));
         Entry<String> entry = future.join();
         System.out.println(entry.contentAsText());
     }
@@ -54,16 +54,17 @@ public class CentralDogmaDemo {
         );
 
         clientWrapper.watchConfigWaitingInitialLimited(
-                "bid-server", "config", "/file1",
+                "bid-server", "config", "/e_greedy/flow_ratio",
                 ((revision, s) -> System.out.print(s))
         );
 
         clientWrapper.watchConfigWaitingInitialLimited(
-                "bid-server", "config", "/file2",
+                "bid-server", "config", "/e_greedy/flow_ratio",
                 ((revision, s) -> System.out.print(s))
         );
 
         // 本线程最多等这么久再死，或者如果在此之前不是alive状态了，直接退出。
         Thread.currentThread().join(100 * 1000);
+        System.out.println("不等了不等了...");
     }
 }

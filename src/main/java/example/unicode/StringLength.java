@@ -27,11 +27,12 @@ public class StringLength {
      */
     public static void main(String[] args) throws IOException {
 //        String str = "皮卡丘yoo";
+        // str.length=6 char(UTF-16)的个数
+        // byte.length = 12
+
         String str = "皮卡皮卡皮卡丘";
 
-        // str.length=6 char(UTF-16)的个数
         System.out.println("string.length = " + str.length());
-        // byte.length = 12
         System.out.println("bytes.length = " + str.getBytes(StandardCharsets.UTF_8).length);
 
         byte[] result = truncateBytes(str, 10);

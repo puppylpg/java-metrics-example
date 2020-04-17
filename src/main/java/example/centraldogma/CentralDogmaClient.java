@@ -19,9 +19,9 @@ import java.util.function.BiConsumer;
 public class CentralDogmaClient {
 
     //    private List<String> centralDogmaHosts = Arrays.asList("centraldogma1.inner.youdao.com", "centraldogma2.inner.youdao.com", "centraldogma3.inner.youdao.com");
-    private List<String> centralDogmaHosts = Arrays.asList("nc107x.corp.youdao.com", "nc110x.corp.youdao.com", "nc090x.corp.youdao.com");
+    private List<String> centralDogmaHosts = Arrays.asList("test-centraldogma.inner.youdao.com");
 
-    private int centralDogmaPort = 36462;
+    private int centralDogmaPort = 80;
 
     @Getter
     private CentralDogma dogmaClient;
@@ -39,6 +39,7 @@ public class CentralDogmaClient {
                 log.info("registered centraldogma host {" + host + ":" + centralDogmaPort + "}");
             }
             dogmaClient = dogmaBuilder.build();
+            log.info("success to connect dogma");
         } catch (Exception e) {
             log.error("error initialize centraldogma client!!", e);
             System.exit(1);

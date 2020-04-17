@@ -242,6 +242,9 @@ Demo for unicode.
 ## generic
 About generic type erasure.
 
+## jcf
+Something about Java Collections Framework.
+
 # plugins
 - Add exec-maven-plugin;
 

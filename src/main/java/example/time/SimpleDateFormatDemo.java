@@ -7,7 +7,7 @@ import java.util.Locale;
 /**
  * @author liuhaibo on 2019/12/26
  */
-public class TimeDemo {
+public class SimpleDateFormatDemo {
 
     public static void main(String... args) {
         String concreteTime = new SimpleDateFormat("yyyyMMdd:HHmmss:SSS", Locale.CHINA).format(new Date());
