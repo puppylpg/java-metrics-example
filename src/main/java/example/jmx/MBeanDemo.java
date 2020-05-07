@@ -105,7 +105,7 @@ public class MBeanDemo {
         // new my MBean
         CountDown countDown = new CountDown(NAME, COUNTER);
         // name for my MBean
-        ObjectName mbeanName = new ObjectName("puppylpg.com:type=CountDown");
+        ObjectName mbeanName = new ObjectName("puppylpg.com:type=CountDown,a=b,c=d");
         // register my MBean
         mbs.registerMBean(countDown, mbeanName);
 
