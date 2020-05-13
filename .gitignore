@@ -32,3 +32,7 @@ test/resources/cache/
 
 writesomebytes.txt
 forwrite.txt
+
+# generated protobuf
+src/main/proto-generated
+

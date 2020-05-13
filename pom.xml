@@ -10,6 +10,9 @@
 
     <properties>
         <dropwizard.metrics.version>3.2.5</dropwizard.metrics.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <proto.generated.dir>src/main/proto-generated</proto.generated.dir>
+        <proto.src.dir>src/main/protobuf</proto.src.dir>
     </properties>
 
     <build>
@@ -17,6 +20,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -104,6 +108,78 @@
                     </arguments>
                 </configuration>
             </plugin>
+            <!-- source -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- protobuf -->
+            <plugin>
+                <groupId>com.github.os72</groupId>
+                <artifactId>protoc-jar-maven-plugin</artifactId>
+                <version>3.11.4</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <protocVersion>3.11.4</protocVersion>
+                            <addSources>none</addSources>
+                            <inputDirectories>
+                                <include>${proto.src.dir}</include>
+                            </inputDirectories>
+                            <outputDirectory>${proto.generated.dir}</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- add source directory -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${proto.generated.dir}</source>
+                                <source>src/main/java-proto</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- add clean directory -->
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${proto.generated.dir}</directory>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
@@ -224,17 +300,20 @@
             <artifactId>curator-recipes</artifactId>
             <version>4.2.0</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.eclipse.jgit/org.eclipse.jgit -->
         <dependency>
             <groupId>org.eclipse.jgit</groupId>
             <artifactId>org.eclipse.jgit</artifactId>
             <version>5.5.1.201910021850-r</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.ehcache/ehcache -->
         <dependency>
             <groupId>org.ehcache</groupId>
             <artifactId>ehcache</artifactId>
             <version>3.8.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>3.11.4</version>
         </dependency>
 
         <!-- LOGs -->
