@@ -1,0 +1,23 @@
+syntax = "proto3";
+package com.puppylpg;
+option java_outer_classname = "HelloWorld2";
+
+message Family {
+
+    string address = 1;
+
+    repeated Person people = 2;
+
+    int32 cost = 3;
+
+    map<string, int32> room_sizes = 4;
+}
+
+message Person {
+    int64 id = 1;
+    string name = 2;
+
+    // newly added compared with proto1
+    string title = 3;
+}
+
