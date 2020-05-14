@@ -1,24 +1,24 @@
 package example.concurrency.producerconsumer.condition;
 
-import java.util.Queue;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.Lock;
 
 public class Consumer {
 
-    private Queue<String> queue;
-    private ReentrantLock lock;
+    private BlockingQueue<String> queue;
+    private Lock lock;
     private String name;
 
     private Condition notEmpty;
     private Condition notFull;
 
-    Consumer(Queue<String> queue, ReentrantLock lock, String name) {
+    Consumer(BlockingQueue<String> queue, Lock lock, Condition notEmpty, Condition notFull, String name) {
         this.queue = queue;
         this.lock = lock;
         this.name = name;
-        this.notEmpty = this.lock.newCondition();
-        this.notFull = this.lock.newCondition();
+        this.notEmpty = notEmpty;
+        this.notFull = notFull;
     }
 
     public String fetch() throws InterruptedException {

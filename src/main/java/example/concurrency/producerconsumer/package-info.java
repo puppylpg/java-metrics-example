@@ -10,7 +10,7 @@
  * 想某个对象的调用条件队列的任何一个方法，必须持有该对象的锁，否则会抛出{@link java.lang.IllegalMonitorStateException}，
  * 因为“等待由状态构成的条件”和“维护状态的一致性” 必须绑定在一起，这是一个复合操作，所以必须获取锁将其变成原子操作。
  *
- * 在manually里，我们使用条件队列实现了更高效的生产者-消费者。
+ * 在waitnotify里，我们手动操作条件队列实现了更高效的生产者-消费者。但是手动加锁解锁还是挺复杂的。
  *
  * 当然，使用{@link java.util.concurrent.BlockingQueue}才是最好的选择。见advanced.
  *
@@ -26,7 +26,7 @@ package example.concurrency.producerconsumer;
 // The standard idiom for calling the wait method in Java
 
 synchronized (sharedObject) {
-    while (condition) {
+    while (!condition) {
         // (Releases lock, and reacquires on wakeup)
         sharedObject.wait(); // 获取该对象的锁的线程进入该对象的条件队列
     }

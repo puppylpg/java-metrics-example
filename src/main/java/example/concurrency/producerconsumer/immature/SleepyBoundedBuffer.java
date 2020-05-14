@@ -34,6 +34,7 @@ public class SleepyBoundedBuffer<V> extends BasedBoundedBuffer<V> {
      *
      * @throws InterruptedException 休眠中断
      */
+    @Override
     public void put(V v) throws InterruptedException {
         while (true) {
             synchronized (this) {
@@ -52,6 +53,7 @@ public class SleepyBoundedBuffer<V> extends BasedBoundedBuffer<V> {
      *
      * @throws InterruptedException 休眠中断
      */
+    @Override
     public V take() throws InterruptedException {
         while (true) {
             synchronized (this) {

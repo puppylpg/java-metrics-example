@@ -22,6 +22,7 @@ public class SpinningBoundedBuffer<V> extends BasedBoundedBuffer<V> {
      *
      * @throws InterruptedException 重试时被中断
      */
+    @Override
     public void put(V v) throws InterruptedException {
         while (!Thread.currentThread().isInterrupted()) {
             synchronized (this) {
@@ -41,6 +42,7 @@ public class SpinningBoundedBuffer<V> extends BasedBoundedBuffer<V> {
      * @return 队首的值
      * @throws InterruptedException 重试时被中断
      */
+    @Override
     public V take() throws InterruptedException {
         while (!Thread.currentThread().isInterrupted()) {
             synchronized (this) {

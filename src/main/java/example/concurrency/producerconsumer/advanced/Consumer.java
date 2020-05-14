@@ -21,14 +21,12 @@ public class Consumer implements Runnable {
 
         // exit when getting interrupted
         while (!Thread.currentThread().isInterrupted()) {
-            synchronized (queue) {
-                try {
-                    System.out.println("<= pop  <= " + name + ": " + queue.take());
-                } catch (InterruptedException e) {
-                    // restore interruption status
-                    Thread.currentThread().interrupt();
-                    System.out.println("Being interrupted, give up now: " + name);
-                }
+            try {
+                System.out.println("<= pop  <= " + name + ": " + queue.take());
+            } catch (InterruptedException e) {
+                // restore interruption status
+                Thread.currentThread().interrupt();
+                System.out.println("Being interrupted, give up now: " + name);
             }
         }
     }

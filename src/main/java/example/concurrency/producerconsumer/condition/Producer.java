@@ -1,26 +1,27 @@
 package example.concurrency.producerconsumer.condition;
 
 import java.util.Queue;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.Lock;
 
 public class Producer {
 
     private Queue<String> queue;
     private int queueSize;
-    private ReentrantLock lock;
+    private Lock lock;
     private String name;
 
-    private Condition stackEmptyCondition;
-    private Condition stackFullCondition;
+    private Condition stackNotEmptyCondition;
+    private Condition stackNotFullCondition;
 
-    Producer(Queue<String> queue, int queueSize, ReentrantLock lock, String name) {
+    Producer(BlockingQueue<String> queue, int queueSize, Lock lock, Condition notEmpty, Condition notFull, String name) {
         this.queue = queue;
         this.queueSize = queueSize;
         this.lock = lock;
         this.name = name;
-        this.stackEmptyCondition = this.lock.newCondition();
-        this.stackFullCondition = this.lock.newCondition();
+        this.stackNotEmptyCondition = notEmpty;
+        this.stackNotFullCondition = notFull;
     }
 
     /**
@@ -35,10 +36,10 @@ public class Producer {
         try {
             lock.lock();
             while(queue.size() == queueSize) {
-                stackFullCondition.await();
+                stackNotFullCondition.await();
             }
             queue.add(item);
-            stackEmptyCondition.signalAll();
+            stackNotEmptyCondition.signalAll();
         } finally {
             lock.unlock();
         }

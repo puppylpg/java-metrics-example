@@ -31,6 +31,7 @@ public class AnnoyingBoundedBuffer<V> extends BasedBoundedBuffer<V> {
      *
      * @throws BufferFullException 队列满异常
      */
+    @Override
     public synchronized void put(V v) throws BufferFullException {
         if (isFull()) {
             throw new BufferFullException();
@@ -44,6 +45,7 @@ public class AnnoyingBoundedBuffer<V> extends BasedBoundedBuffer<V> {
      *
      * @throws BufferEmptyException 队列空异常
      */
+    @Override
     public synchronized V take() throws BufferEmptyException {
         if (isEmpty()) {
             throw new BufferEmptyException();
