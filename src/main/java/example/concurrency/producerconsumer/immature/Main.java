@@ -14,18 +14,16 @@ public class Main {
             for (int i = 0; i < upperBound; i++) {
                 try {
                     buffer.put(i);
-                    System.out.println("put: " + i);
                 } catch (InterruptedException e) {
                     break;
                 }
             }
         });
 
-        Thread consumer = new Thread(() -> {
+        Thread consumer1 = new Thread(() -> {
             while (true) {
                 try {
                     int i = buffer.take();
-                    System.out.println("take: " + i);
                     if (i >= upperBound - 1) {
                         break;
                     }
@@ -35,7 +33,21 @@ public class Main {
             }
         });
 
-        consumer.start();
+        Thread consumer2 = new Thread(() -> {
+            while (true) {
+                try {
+                    int i = buffer.take();
+                    if (i >= upperBound - 1) {
+                        break;
+                    }
+                } catch (InterruptedException e) {
+                    break;
+                }
+            }
+        });
+
+        consumer1.start();
+        consumer2.start();
         producer.start();
     }
 }

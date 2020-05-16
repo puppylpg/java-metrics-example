@@ -13,21 +13,23 @@ abstract class BasedBoundedBuffer<V> implements BoundedBuffer<V> {
         buffer = (V[]) new Object[capacity];
     }
 
-    protected synchronized final void doPut(V v) {
+    protected final void doPut(V v) {
         buffer[tail] = v;
         if (++tail == buffer.length) {
             tail = 0;
         }
         ++count;
+        System.out.println("put: " + v);
     }
 
-    protected synchronized final V doTake() {
+    protected final V doTake() {
         V v = buffer[head];
         buffer[head] = null;
         if (++head == buffer.length) {
             head = 0;
         }
         --count;
+        System.out.println("get: " + v);
         return v;
     }
 

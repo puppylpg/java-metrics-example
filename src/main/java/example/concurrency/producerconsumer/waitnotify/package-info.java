@@ -33,7 +33,7 @@ package example.concurrency.producerconsumer.waitnotify;
 // The standard idiom for calling the wait method in Java
 
 synchronized (sharedObject) {
-    while (condition) {
+    while (!condition) {
         // (Releases lock, and reacquires on wakeup)
         sharedObject.wait(); // 获取该对象的锁的线程进入该对象的条件队列
     }
