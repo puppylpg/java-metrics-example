@@ -19,7 +19,9 @@ public class UsageOfDelayQueue {
 //        ExecutorService service = Executors.newSingleThreadExecutor();
 
         for (int i = 0; i < STUDENT_NUM; i++) {
-            students.put(new Student("Student" + i, 2000 + r.nextInt(3000)));
+            long costTime = 2000 + r.nextInt(3000);
+            students.put(new Student("Student" + i, costTime));
+            System.out.println("Student" + i + ": " + costTime);
         }
 
         // start take object from delayQueue
@@ -44,20 +46,20 @@ public class UsageOfDelayQueue {
      */
     private static class Student implements Runnable, Delayed {
         private String name;
-        // time to use, assigned by Random
-        private long costTime;
-        // time to finish
-        private long finishedTime;
+        // duration to do homework, assigned by Random
+        private long homeworkDuration;
+        // time the student can play
+        private long playTime;
 
-        Student(String name, long costTime) {
+        Student(String name, long homeworkDuration) {
             this.name = name;
-            this.costTime = costTime;
-            finishedTime = costTime + System.currentTimeMillis();
+            this.homeworkDuration = homeworkDuration;
+            playTime = homeworkDuration + System.currentTimeMillis();
         }
 
         @Override
         public void run() {
-            System.out.println(name + " finished. Time used: " + costTime + "ms");
+            System.out.println(name + " finished. Time used: " + homeworkDuration + "ms");
 
             synchronized (this) {
                 try {
@@ -77,7 +79,7 @@ public class UsageOfDelayQueue {
          */
         @Override
         public long getDelay(TimeUnit unit) {
-            return (finishedTime - System.currentTimeMillis());
+            return (playTime - System.currentTimeMillis());
         }
 
         /**
@@ -88,7 +90,7 @@ public class UsageOfDelayQueue {
         @Override
         public int compareTo(Delayed o) {
             Student other = (Student) o;
-            return costTime >= other.costTime ? 1 : -1;
+            return homeworkDuration >= other.homeworkDuration ? 1 : -1;
             // IMPORTANT: show the meaning of compareTo()
 //            return name.compareTo(other.name);
         }
