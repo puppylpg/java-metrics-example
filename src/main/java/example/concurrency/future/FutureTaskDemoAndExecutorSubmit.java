@@ -1,4 +1,4 @@
-package example.future;
+package example.concurrency.future;
 
 import java.util.Random;
 import java.util.concurrent.*;
