@@ -6,11 +6,12 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.ToString;
 
 /**
  * @author liuhaibo on 2017/11/29
  */
-public class JacksonAnnotation {
+public class Family {
 
     public static void main(String[] args) throws Exception {
         List<Father> dataList = new ArrayList<>();
@@ -41,10 +42,11 @@ public class JacksonAnnotation {
 
     }
 
-    @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "typeName")
+    @ToString
+    @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "custom-type-name")
     @JsonSubTypes(value = {
-            @JsonSubTypes.Type(value = Son1.class, name = "Son1"),
-            @JsonSubTypes.Type(value = Son2.class, name = "Son2")
+            @JsonSubTypes.Type(value = Son1.class, name = "FirstSon"),
+            @JsonSubTypes.Type(value = Son2.class, name = "SecondSon")
     })
     public static class Father {
         protected int a;
@@ -66,7 +68,7 @@ public class JacksonAnnotation {
 
     }
 
-    @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, property = "typeName")
+    @ToString(callSuper = true)
     public static class Son1 extends Father {
         public Son1() {
         }
@@ -86,7 +88,7 @@ public class JacksonAnnotation {
         }
     }
 
-    @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, property = "typeName")
+    @ToString(callSuper = true)
     public static class Son2 extends Father {
         private String c;
 
