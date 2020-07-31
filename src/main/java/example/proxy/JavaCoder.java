@@ -21,6 +21,11 @@ public class JavaCoder implements ICoder {
         System.out.println(name + ": I'll use " + (demand.length() + RandomUtils.nextInt(3, 9)) + " hours.");
     }
 
+    @Override
+    public String comment() {
+        return "Java is perfect!";
+    }
+
     /**
      * 这是个没卵用的方法，因为它不在协议内，所以也不会被调用到。。。
      */

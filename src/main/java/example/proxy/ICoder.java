@@ -18,4 +18,6 @@ public interface ICoder {
      * @param demand demand
      */
     void estimateTime(String demand);
+
+    String comment();
 }

@@ -33,4 +33,9 @@ public class StaticProxy implements ICoder {
         coder.estimateTime(demand);
     }
 
+    @Override
+    public String comment() {
+        return coder.comment();
+    }
+
 }
