@@ -5,7 +5,7 @@ package example.proxy;
  *
  * @author liuhaibo on 2018/04/18
  */
-public interface ICoder {
+public interface Coder {
 
     /**
      * finish a demand.
@@ -19,5 +19,9 @@ public interface ICoder {
      */
     void estimateTime(String demand);
 
+    /**
+     * say something
+     * @return
+     */
     String comment();
 }

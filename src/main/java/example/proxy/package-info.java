@@ -1,9 +1,9 @@
 /**
  * RPC其实就是通过动态代理的手段，获取到protocol对象，并当做本地对象在调用。
  *
- * 这里的protocol其实就是{@link example.proxy.ICoder}。
+ * 这里的protocol其实就是{@link example.proxy.Coder}。
  *
- * 唯一的区别是，这里，获取完{@link example.proxy.ICoder}动态代理对象，
+ * 唯一的区别是，这里，获取完{@link example.proxy.Coder}动态代理对象，
  * 当调用对象方法时，在{@link example.proxy.BibiAroundInvocationHandler#invoke(Object, Method, Object[])}里直接用反射就可以了，获取到其返回值，
  * 因为它已经包含有{@link example.proxy.JavaCoder}的对象了，可以直接反射调用其方法；
  *

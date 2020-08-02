@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.time.LocalDateTime;
 
 /**
  * 负责在代理对象的方法调用前后bibi一番.
@@ -17,7 +18,7 @@ public class BibiAroundInvocationHandler implements InvocationHandler {
      * 被代理的对象。之所以要用它，是因为毕竟要调用原始方法。
      * 如果用不到被代理对象，就不用把它放进来了
      */
-    private ICoder coder;
+    private Coder coder;
 
     /**
      * 代理对象在被调用方法时，都会交给该handler（回调该handle的invoke方法）
@@ -31,10 +32,10 @@ public class BibiAroundInvocationHandler implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
-        System.out.println("Do pre-work before a job");
+        System.out.println(">>> Before: " + LocalDateTime.now());
         // 就是通过反射，由函数名、对象、函数参数，去调用此函数。
         Object result = method.invoke(coder, args);
-        System.out.println("Do post-work before a job");
+        System.out.println("<<< After: " + LocalDateTime.now());
         return "(Proxy) " + result;
     }
 }

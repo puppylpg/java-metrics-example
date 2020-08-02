@@ -1,12 +1,12 @@
 package example.proxy.utils;
 
-import example.proxy.ICoder;
+import example.proxy.Coder;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.lang.reflect.UndeclaredThrowableException;
 
-public final class TestProxyGen extends Proxy implements ICoder {
+public final class DynamicCoder extends Proxy implements Coder {
     private static Method m1;
     private static Method m5;
     private static Method m4;
@@ -14,11 +14,11 @@ public final class TestProxyGen extends Proxy implements ICoder {
     private static Method m2;
     private static Method m0;
 
-    public TestProxyGen(InvocationHandler var1) throws {
+    public DynamicCoder(InvocationHandler var1) {
         super(var1);
     }
 
-    public final boolean equals(Object var1) throws {
+    public final boolean equals(Object var1) {
         try {
             return (Boolean) super.h.invoke(this, m1, new Object[]{var1});
         } catch (RuntimeException | Error var3) {
@@ -28,7 +28,7 @@ public final class TestProxyGen extends Proxy implements ICoder {
         }
     }
 
-    public final void estimateTime(String var1) throws {
+    public final void estimateTime(String var1) {
         try {
             super.h.invoke(this, m5, new Object[]{var1});
         } catch (RuntimeException | Error var3) {
@@ -38,7 +38,7 @@ public final class TestProxyGen extends Proxy implements ICoder {
         }
     }
 
-    public final void implementDemands(String var1) throws {
+    public final void implementDemands(String var1) {
         try {
             super.h.invoke(this, m4, new Object[]{var1});
         } catch (RuntimeException | Error var3) {
@@ -48,7 +48,7 @@ public final class TestProxyGen extends Proxy implements ICoder {
         }
     }
 
-    public final String comment() throws {
+    public final String comment() {
         try {
             return (String) super.h.invoke(this, m3, (Object[]) null);
         } catch (RuntimeException | Error var2) {
@@ -58,7 +58,7 @@ public final class TestProxyGen extends Proxy implements ICoder {
         }
     }
 
-    public final String toString() throws {
+    public final String toString() {
         try {
             return (String) super.h.invoke(this, m2, (Object[]) null);
         } catch (RuntimeException | Error var2) {
@@ -68,7 +68,7 @@ public final class TestProxyGen extends Proxy implements ICoder {
         }
     }
 
-    public final int hashCode() throws {
+    public final int hashCode() {
         try {
             return (Integer) super.h.invoke(this, m0, (Object[]) null);
         } catch (RuntimeException | Error var2) {
@@ -81,9 +81,9 @@ public final class TestProxyGen extends Proxy implements ICoder {
     static {
         try {
             m1 = Class.forName("java.lang.Object").getMethod("equals", Class.forName("java.lang.Object"));
-            m5 = Class.forName("example.proxy.ICoder").getMethod("estimateTime", Class.forName("java.lang.String"));
-            m4 = Class.forName("example.proxy.ICoder").getMethod("implementDemands", Class.forName("java.lang.String"));
-            m3 = Class.forName("example.proxy.ICoder").getMethod("comment");
+            m5 = Class.forName("example.proxy.Coder").getMethod("estimateTime", Class.forName("java.lang.String"));
+            m4 = Class.forName("example.proxy.Coder").getMethod("implementDemands", Class.forName("java.lang.String"));
+            m3 = Class.forName("example.proxy.Coder").getMethod("comment");
             m2 = Class.forName("java.lang.Object").getMethod("toString");
             m0 = Class.forName("java.lang.Object").getMethod("hashCode");
         } catch (NoSuchMethodException var2) {

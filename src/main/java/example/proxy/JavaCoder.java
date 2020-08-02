@@ -7,7 +7,7 @@ import org.apache.commons.lang3.RandomUtils;
  * @author liuhaibo on 2018/04/18
  */
 @AllArgsConstructor
-public class JavaCoder implements ICoder {
+public class JavaCoder implements Coder {
 
     String name;
 

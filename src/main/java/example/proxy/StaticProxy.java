@@ -12,10 +12,10 @@ import lombok.Setter;
  */
 @NoArgsConstructor
 @AllArgsConstructor
-public class StaticProxy implements ICoder {
+public class StaticProxy implements Coder {
 
     @Setter
-    private ICoder coder;
+    private Coder coder;
 
     @Override
     public void implementDemands(String demand) {

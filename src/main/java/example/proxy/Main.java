@@ -24,16 +24,16 @@ public class Main {
 
     public static void main(String ... args) {
         // true coder, 需要被代理
-        ICoder coder = new JavaCoder("Tom");
+        Coder coder = new JavaCoder("Tom");
 
         staticProxy(coder);
         dynamicProxy(coder);
     }
 
-    private static void staticProxy(ICoder coder) {
+    private static void staticProxy(Coder coder) {
         System.out.println("===== static proxy =====");
         // static proxy
-        ICoder staticProxy = new StaticProxy(coder);
+        Coder staticProxy = new StaticProxy(coder);
 
         staticProxy.estimateTime("Hello, world");
         staticProxy.implementDemands("Send an ad");
@@ -56,7 +56,7 @@ public class Main {
      * // public com.sun.proxy.$Proxy0(java.lang.reflect.InvocationHandler)
      * final Constructor<?> cons = cl.getConstructor(constructorParams);
      */
-    private static void dynamicProxy(ICoder coder) {
+    private static void dynamicProxy(Coder coder) {
         System.out.println("\n===== dynamic proxy =====");
         // 代理对象调用方法时，会回调的handler
         InvocationHandler handler = new BibiAroundInvocationHandler(coder);
@@ -90,7 +90,7 @@ public class Main {
         System.out.println("\n=> invoke method =>");
 
         // 直接生成一个代理对象实例（实际上也是两步：先在jvm中生成一个代理类Class的对象，再使用该Class对象生成代理对象）
-        ICoder proxy = (ICoder) Proxy.newProxyInstance(coder.getClass().getClassLoader(), coder.getClass().getInterfaces(), handler);
+        Coder proxy = (Coder) Proxy.newProxyInstance(coder.getClass().getClassLoader(), coder.getClass().getInterfaces(), handler);
 
         proxy.estimateTime("Hello, world");
         proxy.implementDemands("Send an ad");

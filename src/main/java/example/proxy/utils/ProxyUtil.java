@@ -13,8 +13,8 @@ import java.io.IOException;
 public class ProxyUtil {
 
     public static void main(String[] args) throws IOException {
-        byte[] classFile = ProxyGenerator.generateProxyClass("TestProxyGen", JavaCoder.class.getInterfaces());
-        File file = new File("/tmp/TestProxyGen.class");
+        byte[] classFile = ProxyGenerator.generateProxyClass("DynamicCoder", JavaCoder.class.getInterfaces());
+        File file = new File("/tmp/DynamicCoder.class");
         FileOutputStream fos = new FileOutputStream(file);
         fos.write(classFile);
         fos.flush();
