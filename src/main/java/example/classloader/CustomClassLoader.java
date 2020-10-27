@@ -100,6 +100,7 @@ public class CustomClassLoader extends ClassLoader {
      * 具体来说，在调用{@link ClassLoader#defineClass(String, byte[], int, int)}的时候，
      * 又把{@link Foooo}里面用到的类load了一遍，所以有了{@link Object}、{@link System}和{@link java.io.PrintStream}：
      *
+     * Parent of CustomClassLoader:sun.misc.Launcher$AppClassLoader@18b4aac2
      * loading class 'example.classloader.Foooo' by custom classloader: class example.classloader.CustomClassLoader
      * loading class 'java.lang.Object' by papa classloader: sun.misc.Launcher$AppClassLoader@18b4aac2
      * loading class 'java.lang.System' by papa classloader: sun.misc.Launcher$AppClassLoader@18b4aac2
@@ -114,8 +115,11 @@ public class CustomClassLoader extends ClassLoader {
      * In our example, for the classes in {@link #USER_LOADED_PACKAGE_PREFIX} package, we do load them without asking the parent.
      */
     public static void main(String[] args) throws Exception {
-        CustomClassLoader customClassLoader = new CustomClassLoader(Foooo.class.getClassLoader());
+        CustomClassLoader customClassLoader = new CustomClassLoader(ClassLoader.getSystemClassLoader());
+        System.out.println("Parent of CustomClassLoader:" + customClassLoader.getClass().getClassLoader());
         Class<?> classFoo = customClassLoader.loadClass("example.classloader.Foooo");
+
+        Class.forName("example.classloader.Foooo");
 
         // invoke instance method
         Object instance = classFoo.newInstance();

@@ -4,8 +4,10 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import org.apache.commons.collections.Transformer;
 import org.apache.commons.collections.map.TransformedMap;
+import sun.misc.Launcher;
 
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -42,9 +44,22 @@ public class LoadConfigDemo {
         Map<String, String> tmpMap = new HashMap<>(MAP_SPLITTER.split(config.getProperty("example.map", "a:1,b:1,c:3")));
         Map<String, Integer> map = TransformedMap.decorateTransform(tmpMap, null, STRING_TO_INT_TRANSFORMER);
 
-        System.out.println(System.getProperty("java.class.path"));
+        System.out.println("java.class.path: " + System.getProperty("java.class.path"));
+        System.out.println("sun.boot.class.path: " + System.getProperty("sun.boot.class.path"));
+        System.out.println("boot strap: ");
+        URL[] urLs = sun.misc.Launcher.getBootstrapClassPath().getURLs();
+        for (URL url : urLs) {
+            System.out.println(url.toExternalForm());
+        }
+        System.out.println("java.ext.dirs: " + System.getProperty("java.ext.dirs"));
         System.out.println(list);
         System.out.println(map);
+
+        ClassLoader loader = ClassLoader.getSystemClassLoader();
+        while (loader != null) {
+            System.out.println(loader.getClass().getSimpleName());
+            loader = loader.getParent();
+        }
     }
 
 }

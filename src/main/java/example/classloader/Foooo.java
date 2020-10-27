@@ -5,10 +5,14 @@ package example.classloader;
  */
 public class Foooo {
 
+    static {
+        System.out.println("=== initialize me");
+    }
+
     public static String s = "Karrigan";
 
     public static void changeString(String string) {
-        System.out.println("before change: s=" + s);
+        System.out.println("beflore change: s=" + s);
         s = string;
         System.out.println("after change: s=" + s);
     }
