@@ -1,9 +1,10 @@
-package example.nio;
+package example.nio.aio;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousFileChannel;
 import java.nio.channels.CompletionHandler;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,20 +19,21 @@ import java.util.concurrent.Future;
 public class AsyncFileChannelDemo {
 
     public static void main(String... args) throws IOException, InterruptedException {
-        asyncRead();
         asyncWrite();
+        asyncRead();
 
-        System.out.println("Sleep to wait async io..");
+        System.out.println(String.format("[%s] Sleep to wait async io...", Thread.currentThread().getName()));
         Thread.sleep(1000);
+        System.out.println(String.format("[%s] Main thread exit...", Thread.currentThread().getName()));
     }
 
     private static void asyncRead() throws IOException {
         // 使用相对路径读。Note：换目录就崩
-        Path gitIgnore = Paths.get(".gitignore");
+        Path gitIgnore = Paths.get("forwrite.txt");
         OpenOption[] options = {StandardOpenOption.READ};
         AsynchronousFileChannel fileChannel = AsynchronousFileChannel.open(gitIgnore, options);
 
-        ByteBuffer byteBuffer = ByteBuffer.allocate(5);
+        ByteBuffer byteBuffer = ByteBuffer.allocate(10);
 
         // 方法一：使用Future去读
         // read once
@@ -44,27 +46,27 @@ public class AsyncFileChannelDemo {
             // wait
         }
 
-        System.out.println("Read down by Future.");
+        System.out.println(String.format("[%s] Read done by Future.", Thread.currentThread().getName()));
         output(byteBuffer);
+        byteBuffer.clear();
 
         // 方法二：使用CompletionHandle去读
-        byteBuffer.clear();
-        fileChannel.read(byteBuffer, 0, null, new CompletionHandler<Integer, ByteBuffer>() {
+        fileChannel.read(byteBuffer, 0, "A Read Attachment", new CompletionHandler<Integer, String>() {
             @Override
-            public void completed(Integer result, ByteBuffer attachment) {
-                System.out.println("Read result code: " + result + ". I have nothing to do with the ATTACHMENT object.");
+            public void completed(Integer result, String attachment) {
+                System.out.println(String.format("[%s] Read result code: %s. This is the attachment object I put when reading: %s.", Thread.currentThread().getName(), result, attachment));
+                output(byteBuffer);
             }
 
             @Override
-            public void failed(Throwable exc, ByteBuffer attachment) {
-
+            public void failed(Throwable exc, String attachment) {
+                System.out.println(String.format("[%s] Read failed.", Thread.currentThread().getName()));
             }
         });
-        // 注意这个是在sleep的提示语后输出的
-        output(byteBuffer);
     }
 
     private static void asyncWrite() throws IOException {
+        // ${working directory}/forwrite.txt
         Path forWrite = Paths.get("forwrite.txt");
         OpenOption[] options = {StandardOpenOption.WRITE, StandardOpenOption.CREATE};
         AsynchronousFileChannel fileChannel = AsynchronousFileChannel.open(forWrite, options);
@@ -81,17 +83,18 @@ public class AsyncFileChannelDemo {
             // wait
         }
 
-        System.out.println("Write done by Future.");
+        System.out.println(String.format("[%s] Write done by Future.", Thread.currentThread().getName()));
 
-        fileChannel.write(buffer, 0, null, new CompletionHandler<Integer, ByteBuffer>() {
+        fileChannel.write(buffer, 0, "A Write Attachment", new CompletionHandler<Integer, String>() {
             @Override
-            public void completed(Integer result, ByteBuffer attachment) {
-                System.out.println("Write result code: " + result + ". I have nothing to do with the ATTACHMENT object.");
+            public void completed(Integer result, String attachment) {
+                System.out.println(String.format("[%s] Write result code: %s. This is the attachment object I put when writing: %s.", Thread.currentThread().getName(), result, attachment));
+                output(buffer);
             }
 
             @Override
-            public void failed(Throwable exc, ByteBuffer attachment) {
-
+            public void failed(Throwable exc, String attachment) {
+                System.out.println(String.format("[%s] Write failed.", Thread.currentThread().getName()));
             }
         });
     }
@@ -100,6 +103,6 @@ public class AsyncFileChannelDemo {
         byteBuffer.flip();
         byte[] data = new byte[byteBuffer.limit()];
         byteBuffer.get(data);
-        System.out.println(new String(data));
+        System.out.println(String.format("[%s] %s", Thread.currentThread().getName(), new String(data, StandardCharsets.UTF_8)));
     }
 }

@@ -40,24 +40,34 @@ public class TreeCover {
         System.out.println(equal1(a, b));
         System.out.println(equal(a, b, false));
         System.out.println(equal3(a, b));
+        System.out.println(equal4(a, b));
 
         System.out.println("c vs. b:");
         System.out.println(equal1(c, b));
         System.out.println(equal(c, b, false));
         System.out.println(equal3(c, b));
+        System.out.println(equal4(c, b));
     }
 
     // 不科学
     public static boolean equal1(Node a, Node b) {
-        if (b == null) return true;
+        if (b == null) {
+            return true;
+        }
 
-        if (a == null) return false;
+        if (a == null) {
+            return false;
+        }
 
         if (a.value == b.value) {
-            if (equal1(a.left, b.left) && equal1(a.right, b.right))
+            if (equal1(a.left, b.left) && equal1(a.right, b.right)) {
                 return true;
-            else return (equal1(a.left, b)) || equal1(a.right, b);
-        } else return (equal1(a.left, b)) || equal1(a.right, b);
+            } else {
+                return (equal1(a.left, b)) || equal1(a.right, b);
+            }
+        } else {
+            return (equal1(a.left, b)) || equal1(a.right, b);
+        }
     }
 
     // 太复杂
@@ -87,12 +97,25 @@ public class TreeCover {
     public static boolean equal3(Node a, Node b) {
         if (a.value == b.value) {
             return dfs(a, b);
-        } else return (equal3(a.left, b) || equal3(a.right, b));
+        } else {
+            return (equal3(a.left, b) || equal3(a.right, b));
+        }
     }
 
     public static boolean dfs(Node r1, Node r2) {
-        if (r2 == null) return true;
-        if (r1 == null) return false;
+        if (r2 == null) {
+            return true;
+        }
+        if (r1 == null) {
+            return false;
+        }
         return r1.value==r2.value && dfs(r1.left, r2.left) && dfs(r1.right, r2.right);
+    }
+
+    // simplest
+    public static boolean equal4(Node a, Node b) {
+        return dfs(a, b)
+                || ((a.left != null && equal4(a.left, b))
+                || (a.right != null && equal4(a.right, b)));
     }
 }
