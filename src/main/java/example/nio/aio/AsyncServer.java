@@ -16,47 +16,50 @@ import java.util.Map;
 public class AsyncServer {
 
     public static void main(String... args) throws IOException {
+//        taowa();
+        normal();
+    }
+
+    public static void normal() throws IOException {
         AsynchronousServerSocketChannel serverChannel = AsynchronousServerSocketChannel.open();
         InetSocketAddress hostAddress = new InetSocketAddress("localhost", 4999);
         serverChannel.bind(hostAddress);
 
-        while (true) {
-            serverChannel.accept(
-                    null,
-                    new CompletionHandler<AsynchronousSocketChannel, Object>() {
+        serverChannel.accept(
+                null,
+                new CompletionHandler<AsynchronousSocketChannel, Object>() {
 
-                        @Override
-                        public void completed(AsynchronousSocketChannel clientChannel, Object attachment) {
-                            if (serverChannel.isOpen()) {
-                                serverChannel.accept(null, this);
-                            }
-
-                            try {
-                                System.out.println(String.format("[%s] client connected: %s", Thread.currentThread().getName(), clientChannel.getRemoteAddress()));
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-
-                            if (clientChannel.isOpen()) {
-                                ReadWriteHandler handler = new ReadWriteHandler();
-                                ByteBuffer buffer = ByteBuffer.allocate(32);
-
-                                Map<String, Object> readInfo = new HashMap<>();
-                                readInfo.put("action", "read");
-                                readInfo.put("buffer", buffer);
-                                readInfo.put("channel", clientChannel);
-
-                                clientChannel.read(buffer, readInfo, handler);
-                            }
+                    @Override
+                    public void completed(AsynchronousSocketChannel clientChannel, Object attachment) {
+                        if (serverChannel.isOpen()) {
+                            serverChannel.accept(null, this);
                         }
 
-                        @Override
-                        public void failed(Throwable exc, Object attachment) {
-                            // process error
+                        try {
+                            System.out.println(String.format("[%s] client connected: %s", Thread.currentThread().getName(), clientChannel.getRemoteAddress()));
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
-                    });
-            System.in.read();
-        }
+
+                        if (clientChannel.isOpen()) {
+                            ReadWriteHandler handler = new ReadWriteHandler();
+                            ByteBuffer buffer = ByteBuffer.allocate(32);
+
+                            Map<String, Object> readInfo = new HashMap<>();
+                            readInfo.put("action", "read");
+                            readInfo.put("buffer", buffer);
+                            readInfo.put("channel", clientChannel);
+
+                            clientChannel.read(buffer, readInfo, handler);
+                        }
+                    }
+
+                    @Override
+                    public void failed(Throwable exc, Object attachment) {
+                        // process error
+                    }
+                });
+        System.in.read();
     }
 
     public static class ReadWriteHandler implements CompletionHandler<Integer, Map<String, Object>> {
@@ -102,67 +105,79 @@ public class AsyncServer {
         }
     }
 
-//    public void taowa() {
-//        while (true) {
-//            serverChannel.accept(
-//                    null,
-//                    new CompletionHandler<AsynchronousSocketChannel, Object>() {
-//
-//                        @Override
-//                        public void completed(AsynchronousSocketChannel clientChannel, Object attachment) {
-//                            if (serverChannel.isOpen()){
-//                                serverChannel.accept(null, this);
+    private static void taowa() throws IOException {
+        AsynchronousServerSocketChannel serverChannel = AsynchronousServerSocketChannel.open();
+        InetSocketAddress hostAddress = new InetSocketAddress("localhost", 4999);
+        serverChannel.bind(hostAddress);
+
+        serverChannel.accept(
+                null,
+                new CompletionHandler<AsynchronousSocketChannel, Object>() {
+
+                    @Override
+                    public void completed(AsynchronousSocketChannel clientChannel, Object attachment) {
+                        if (serverChannel.isOpen()){
+                            serverChannel.accept(null, this);
+                        }
+
+                        try {
+                            System.out.println(String.format("[%s] client connected: %s", Thread.currentThread().getName(), clientChannel.getRemoteAddress()));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        while (clientChannel.isOpen()) {
+//                            try {
+//                                Thread.sleep(3000);
+//                            } catch (InterruptedException e) {
+//                                e.printStackTrace();
 //                            }
-//
-//                            if ((clientChannel != null) && (clientChannel.isOpen())) {
-////                                ReadWriteHandler handler = new ReadWriteHandler();
-//                                ByteBuffer buffer = ByteBuffer.allocate(32);
-//
-////                                Map<String, Object> readInfo = new HashMap<>();
-////                                readInfo.put("action", "read");
-////                                readInfo.put("buffer", buffer);
-//
-////                                clientChannel.read(buffer, readInfo, handler);
-//
-//                                clientChannel.read(
-//                                        buffer,
-//                                        null,
-//                                        new CompletionHandler<Integer, Object>() {
-//
-//                                            @Override
-//                                            public void completed(Integer result, Object attachment) {
-//                                                clientChannel.write(
-//                                                        buffer,
-//                                                        null,
-//                                                        new CompletionHandler<Integer, Object>() {
-//                                                            @Override
-//                                                            public void completed(Integer result, Object attachment) {
-//
-//                                                            }
-//
-//                                                            @Override
-//                                                            public void failed(Throwable exc, Object attachment) {
-//
-//                                                            }
-//                                                        }
-//                                                );
-//                                                buffer.clear();
-//                                            }
-//
-//                                            @Override
-//                                            public void failed(Throwable exc, Object attachment) {
-//
-//                                            }
-//                                        }
-//                                )
-//                            }
-//                        }
-//                        @Override
-//                        public void failed(Throwable exc, Object attachment) {
-//                            // process error
-//                        }
-//                    });
-//            System.in.read();
-//        }
-//    }
+                            ByteBuffer buffer = ByteBuffer.allocate(32);
+
+                            clientChannel.read(
+                                    buffer,
+                                    null,
+                                    new CompletionHandler<Integer, Object>() {
+
+                                        @Override
+                                        public void completed(Integer result, Object attachment) {
+                                            buffer.flip();
+
+                                            // duplicate buffer
+                                            String bufferContent = StandardCharsets.UTF_8.decode(buffer.duplicate()).toString();
+                                            System.out.println(String.format("[%s] data read: %s", Thread.currentThread().getName(), bufferContent));
+
+                                            clientChannel.write(
+                                                    buffer,
+                                                    null,
+                                                    new CompletionHandler<Integer, Object>() {
+                                                        @Override
+                                                        public void completed(Integer result, Object attachment) {
+//                                                String bufferContent = StandardCharsets.UTF_8.decode(buffer.duplicate()).toString();
+                                                            System.out.println(String.format("[%s] data written done", Thread.currentThread().getName()));
+                                                        }
+
+                                                        @Override
+                                                        public void failed(Throwable exc, Object attachment) {
+
+                                                        }
+                                                    }
+                                            );
+                                        }
+
+                                        @Override
+                                        public void failed(Throwable exc, Object attachment) {
+
+                                        }
+                                    }
+                            );
+                        }
+                    }
+                    @Override
+                    public void failed(Throwable exc, Object attachment) {
+                        // process error
+                    }
+                });
+        System.in.read();
+    }
 }

@@ -17,8 +17,11 @@ public class AsyncClient {
 
         Client client = new Client();
 
+        System.out.println("1st send");
         String resp1 = client.sendMessage("hello");
+        System.out.println("2st send");
         String resp2 = client.sendMessage("world");
+        System.out.println("The end");
         System.out.println(resp1);
         System.out.println(resp2);
     }
@@ -54,6 +57,4 @@ public class AsyncClient {
             return echo;
         }
     }
-
-
 }
